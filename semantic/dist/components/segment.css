@@ -520,10 +520,10 @@
 
 /* Red */
 .ui.red.segment:not(.inverted) {
-  border-top: 2px solid #DB2828 !important;
+  border-top: 2px solid #ea4f4f !important;
 }
 .ui.inverted.red.segment {
-  background-color: #DB2828 !important;
+  background-color: #ea4f4f !important;
   color: #FFFFFF !important;
 }
 
