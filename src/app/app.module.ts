@@ -10,6 +10,7 @@ import { TrajectOdsComponent } from './traject-ods/traject-ods.component';
 import { TrajectAfsprakenComponent } from './traject-afspraken/traject-afspraken.component';
 import { OdsComponent } from './ods/ods.component';
 import { AfsprakenComponent } from './afspraken/afspraken.component';
+import { TrajectLocatiesDetailComponent } from './traject-locaties-detail/traject-locaties-detail.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { AfsprakenComponent } from './afspraken/afspraken.component';
     TrajectOdsComponent,
     TrajectAfsprakenComponent,
     OdsComponent,
-    AfsprakenComponent
+    AfsprakenComponent,
+    TrajectLocatiesDetailComponent
   ],
   imports: [
     BrowserModule
