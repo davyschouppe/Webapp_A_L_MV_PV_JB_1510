@@ -8,6 +8,7 @@ import { TrajectLocatiesComponent } from './traject-locaties/traject-locaties.co
 import { TrajectComponent } from './traject/traject.component';
 import { TrajectOdsComponent } from './traject-ods/traject-ods.component';
 import { TrajectAfsprakenComponent } from './traject-afspraken/traject-afspraken.component';
+import { OdsComponent } from './ods/ods.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { TrajectAfsprakenComponent } from './traject-afspraken/traject-afspraken
     TrajectLocatiesComponent,
     TrajectComponent,
     TrajectOdsComponent,
-    TrajectAfsprakenComponent
+    TrajectAfsprakenComponent,
+    OdsComponent
   ],
   imports: [
     BrowserModule
