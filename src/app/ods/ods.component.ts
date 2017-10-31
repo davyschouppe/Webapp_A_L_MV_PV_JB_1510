@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ods.component.css']
 })
 export class OdsComponent implements OnInit {
-  private ods = new Array<>();
+  private ods = new Array<Object>();
 
   constructor() {
     this.ods = [{'nr': 130, 'beschrijving': 'Kiest adequaat hulpmiddel'},
