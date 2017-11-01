@@ -11,6 +11,7 @@ import { TrajectAfsprakenComponent } from './traject-afspraken/traject-afspraken
 import { OdsComponent } from './ods/ods.component';
 import { AfsprakenComponent } from './afspraken/afspraken.component';
 import { TrajectLocatiesDetailComponent } from './traject-locaties-detail/traject-locaties-detail.component';
+import { LeerlingenComponent } from './leerlingen/leerlingen.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { TrajectLocatiesDetailComponent } from './traject-locaties-detail/trajec
     TrajectAfsprakenComponent,
     OdsComponent,
     AfsprakenComponent,
-    TrajectLocatiesDetailComponent
+    TrajectLocatiesDetailComponent,
+    LeerlingenComponent
   ],
   imports: [
     BrowserModule
