@@ -12,6 +12,8 @@ import { OdsComponent } from './ods/ods.component';
 import { AfsprakenComponent } from './afspraken/afspraken.component';
 import { TrajectLocatiesDetailComponent } from './traject-locaties-detail/traject-locaties-detail.component';
 import { LeerlingenComponent } from './leerlingen/leerlingen.component';
+import { LeerlingenInfoDetailComponent } from './leerlingen-detail-info/leerlingen-detail-info.component';
+import { LeerlingenDetailComponent } from './leerlingen-detail/leerlingen-detail.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { LeerlingenComponent } from './leerlingen/leerlingen.component';
     OdsComponent,
     AfsprakenComponent,
     TrajectLocatiesDetailComponent,
-    LeerlingenComponent
+    LeerlingenComponent,
+    LeerlingenInfoDetailComponent,
+    LeerlingenDetailComponent
   ],
   imports: [
     BrowserModule
