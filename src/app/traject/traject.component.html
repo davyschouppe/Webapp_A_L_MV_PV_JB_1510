@@ -1,34 +1,10 @@
-<div class="ui hidden divider"></div>
 <div class="ui grid">
   <div class="ten wide column">
-    <div class="ui segments">
-      <div class="ui clearing segment">
-        <h3 class="ui left floated header">Locaties</h3>
-        <button class="ui right floated green compact button"><i class="plus icon"></i>Nieuwe locatie</button>
-      </div>
-      <div class="ui segment">
-          <app-traject-locaties></app-traject-locaties>
-      </div>
-    </div>
+    <app-traject-locaties></app-traject-locaties>
   </div>
   <div class="six wide column">
-    <div class="ui segments">
-      <div class="ui clearing grey inverted segment">
-          <h4 class="ui left floated header">Onderwijs doelen</h4>
-          <button class="ui right floated green compact button"><i class="plus icon"></i>Voeg toe</button>
-      </div>
-      <div class="ui segment">
-        <app-traject-ods></app-traject-ods>
-      </div>
-    </div>
-    <div class="ui segments">
-      <div class="ui clearing grey inverted segment">
-        <h4 class="ui left floated header">Afspraken</h4>
-        <button class="ui right floated green compact button"><i class="plus icon"></i>Voeg toe</button>
-      </div>
-      <div class="ui segment">
-        <app-traject-afspraken></app-traject-afspraken>
-      </div>
-    </div>
+    <app-traject-ods></app-traject-ods>
+    <div class="ui hidden divider"></div>
+    <app-traject-afspraken></app-traject-afspraken>
   </div>
 </div>
