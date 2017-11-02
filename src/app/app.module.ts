@@ -14,6 +14,7 @@ import { TrajectLocatiesDetailComponent } from './traject-locaties-detail/trajec
 import { LeerlingenComponent } from './leerlingen/leerlingen.component';
 import { LeerlingenInfoDetailComponent } from './leerlingen-detail-info/leerlingen-detail-info.component';
 import { LeerlingenDetailComponent } from './leerlingen-detail/leerlingen-detail.component';
+import { LeerlingenDetailTrackingComponent } from './leerlingen-detail-tracking/leerlingen-detail-tracking.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { LeerlingenDetailComponent } from './leerlingen-detail/leerlingen-detail
     TrajectLocatiesDetailComponent,
     LeerlingenComponent,
     LeerlingenInfoDetailComponent,
-    LeerlingenDetailComponent
+    LeerlingenDetailComponent,
+    LeerlingenDetailTrackingComponent
   ],
   imports: [
     BrowserModule
