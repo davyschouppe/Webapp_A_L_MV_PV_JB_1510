@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { NavigationbarComponent } from './navigationbar/navigationbar.component';
@@ -15,6 +16,16 @@ import { LeerlingenComponent } from './leerlingen/leerlingen.component';
 import { LeerlingenInfoDetailComponent } from './leerlingen-detail-info/leerlingen-detail-info.component';
 import { LeerlingenDetailComponent } from './leerlingen-detail/leerlingen-detail.component';
 import { LeerlingenDetailTrackingComponent } from './leerlingen-detail-tracking/leerlingen-detail-tracking.component';
+
+const appRoutes: Routes = [
+  { path: 'locatie', component: TrajectLocatiesDetailComponent},
+  { path: 'traject', component: TrajectComponent},
+  { path: 'trajecten', component: TrajectenComponent},
+  { path: 'leerlingen', component: LeerlingenComponent },
+  { path: 'ods', component: OdsComponent},
+  { path: 'afspraken', component: AfsprakenComponent},
+  { path: '', redirectTo: '/trajecten', pathMatch: 'full'}
+]
 
 @NgModule({
   declarations: [
@@ -34,9 +45,14 @@ import { LeerlingenDetailTrackingComponent } from './leerlingen-detail-tracking/
     LeerlingenDetailTrackingComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(
+      appRoutes,
+      { enableTracing: true } // <-- debugging purposes only
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
