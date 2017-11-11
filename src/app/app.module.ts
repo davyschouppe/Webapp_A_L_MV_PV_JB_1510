@@ -16,6 +16,7 @@ import { LeerlingenComponent } from './leerlingen/leerlingen.component';
 import { LeerlingenInfoDetailComponent } from './leerlingen-detail-info/leerlingen-detail-info.component';
 import { LeerlingenDetailComponent } from './leerlingen-detail/leerlingen-detail.component';
 import { LeerlingenDetailTrackingComponent } from './leerlingen-detail-tracking/leerlingen-detail-tracking.component';
+import {HttpModule} from '@angular/http';
 
 const appRoutes: Routes = [
   { path: 'locatie', component: TrajectLocatiesDetailComponent},
@@ -46,6 +47,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
