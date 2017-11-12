@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+declare var $: any;
 
 @Component({
   selector: 'app-traject-locaties-detail',
@@ -10,6 +11,9 @@ export class TrajectLocatiesDetailComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    $('.special.cards .image').dimmer({
+      on: 'hover'
+    });
   }
 
 }

@@ -1,66 +1,69 @@
 <div class="ui segments">
   <div class="ui clearing grey inverted segment">
     <h4 class="ui left floated header">Afspraken</h4>
-    <button class="ui right floated green compact button">
+    <button class="ui right floated green compact button" (click)="openAddRule()">
       <i class="plus icon"></i>Voeg toe</button>
   </div>
-  <div class="ui segment">
+  <div class="ui segment trajectafspraken">
     <div class="ui middle aligned divided list">
-      <div class="item">
+      <div class="item" *ngFor="let afspraak of afspraken">
         <div class="right floated content">
-          <div class="ui red icon compact button">
-            <i class="trash outline icon"></i>
+          <div class="ui red icon compact button" (click)="openRemoveRule(afspraak)">
+            <i class="minus outline icon"></i>
           </div>
         </div>
-        <img class="ui avatar image" src="../../assets/images/trap.png">
         <div class="content">
-          We lopen rechts op de trap
+          <img class="ui avatar image" src={{afspraak.icon}}> {{afspraak.beschrijving}}
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="ui modal tiny addrule">
+  <div class="ui header">
+    Voeg een afspraak toe
+  </div>
+  <div class="content trajectafspraken">
+    <div class="ui middle aligned divided list" *ngFor="let afspraak of afspraken">
       <div class="item">
         <div class="right floated content">
-          <div class="ui red icon compact button">
-            <i class="trash outline icon"></i>
+          <div class="ui green icon compact button" (click)="addRule(afspraak)">
+            <i class="plus outline icon"></i>
           </div>
         </div>
-        <img class="ui avatar image" src="../../assets/images/stappen-per-2.jpg">
         <div class="content">
-          We stappen per 2
+          <img class="ui avatar image" src={{afspraak.icon}}> {{afspraak.beschrijving}}
         </div>
       </div>
-      <div class="item">
-        <div class="right floated content">
-          <div class="ui red icon compact button">
-            <i class="trash outline icon"></i>
-          </div>
-        </div>
-        <img class="ui avatar image" src="../../assets/images/deur-kloppen.png">
-        <div class="content">
-          We kloppen op de deur voor we binnen gaan
-        </div>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="ui cancel compact button">
+      Annuleer
+    </div>
+  </div>
+</div>
+
+<div class="ui modal tiny removerule">
+  <div class="ui header">
+    Verwijder een afspraak
+  </div>
+  <div class="content">
+    <div class="item">
+      <div class="content">
+        <img class="ui avatar image" src={{removeAfspraak?.icon}}> {{removeAfspraak?.beschrijving}}
       </div>
-      <div class="item">
-        <div class="right floated content">
-          <div class="ui red icon compact button">
-            <i class="trash outline icon"></i>
-          </div>
-        </div>
-        <img class="ui avatar image" src="../../assets/images/gillen-kruis-rood.png">
-        <div class="content">
-          We gillen niet
-        </div>
-      </div>
-      <div class="item">
-        <div class="right floated content">
-          <div class="ui red icon compact button">
-            <i class="trash outline icon"></i>
-          </div>
-        </div>
-        <img class="ui avatar image" src="../../assets/images/groep-blijven.png">
-        <div class="content">
-          We blijven bij de groep
-        </div>
-      </div>
+    </div>
+    <br> Wilt u deze afspraak verwijderen?
+  </div>
+  <div class="actions">
+    <div class="ui cancel compact button">
+      Annuleer
+    </div>
+    <div class="ui red ok compact button" (click)="removeRule()">
+      <i class="remove icon"></i>
+      Verwijder
     </div>
   </div>
 </div>

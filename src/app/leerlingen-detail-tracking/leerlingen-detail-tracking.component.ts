@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+declare var $: any;
 
 @Component({
   selector: 'app-leerlingen-detail-tracking',
@@ -10,6 +11,8 @@ export class LeerlingenDetailTrackingComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    $('.kaart .image')
+      .dimmer('toggle')
+    ;
   }
-
 }

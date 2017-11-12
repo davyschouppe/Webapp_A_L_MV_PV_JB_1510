@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+
+declare var $: any;
 import {OdsDataService} from '../ods-data.service';
 import {Od} from './od.model';
 import {Subject} from 'rxjs/Subject';
+
 
 @Component({
   selector: 'app-ods',
@@ -10,9 +13,12 @@ import {Subject} from 'rxjs/Subject';
   providers: [OdsDataService]
 })
 export class OdsComponent implements OnInit {
+
   // private ods = new Array<Object>();
   private _ods: Od[];
   private myUnsubscribe: Subject<boolean> = new Subject<boolean>();
+  removingOd;
+  editingOd;
 
   constructor(private _odsDataService: OdsDataService) {
     // this.ods = [{'nr': 130, 'beschrijving': 'Kiest adequaat hulpmiddel'},
@@ -35,6 +41,32 @@ export class OdsComponent implements OnInit {
 
   get ods() {
     return this._ods;
+  }
+
+  openNewOd() {
+    $('.ui.modal.makeod').modal('show');
+  }
+  openEditOd(od) {
+    this.editingOd = od;
+    $('.ui.modal.editod').modal('show');
+  }
+  openRemoveOd(od) {
+    this.removingOd = od;
+    $('.ui.modal.removeod').modal('show');
+  }
+
+  addOd(od) {
+    this.ods.push(od);
+  }
+  editOd() {
+
+  }
+  removeOd() {
+    for (var x = 0; x < this.ods.length; x++) {
+      if (this.ods[x] === this.removingOd) {
+        this.ods.splice(x, 1);
+      }
+    }
   }
 
 }

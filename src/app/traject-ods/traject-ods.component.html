@@ -1,66 +1,72 @@
 <div class="ui segments">
   <div class="ui clearing grey inverted segment">
     <h4 class="ui left floated header">Onderwijs doelen</h4>
-    <button class="ui right floated green compact button">
+    <button class="ui right floated green compact button" (click)="openAddOd()">
       <i class="plus icon"></i>Voeg toe</button>
   </div>
-  <div class="ui segment">
-    <div class="ui middle aligned divided list">
+  <div class="ui segment trajectods">
+    <div class="ui middle aligned divided list" *ngFor="let od of ods">
       <div class="item">
         <div class="right floated content">
-          <div class="ui red icon compact button">
-            <i class="trash outline icon"></i>
+          <div class="ui red icon compact button" (click)="openRemoveOd(od)">
+            <i class="minus outline icon"></i>
           </div>
         </div>
         <div class="content middle aligned">
-          <div class="ui blue horizontal large label">130</div>
-          Kiest adequaat hulpmiddel
+          <div class="ui blue horizontal large label">{{od.nr}}</div>
+          {{od.beschrijving}}
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="ui modal tiny addod">
+  <div class="ui header">
+    Voeg onderwijs doelen toe
+  </div>
+  <div class="content trajectods">
+    <div class="ui middle aligned divided list" *ngFor="let od of ods">
       <div class="item">
         <div class="right floated content">
-          <div class="ui red icon compact button">
-            <i class="trash outline icon"></i>
+          <div class="ui green icon compact button" (click)="addOd(od)">
+            <i class="plus outline icon"></i>
           </div>
         </div>
-        <div class="content">
-          <div class="ui blue horizontal large label">135</div>
-          Gaat om met hulpverleners
+        <div class="content middle aligned">
+          <div class="ui blue horizontal large label">{{od.nr}}</div>
+          {{od.beschrijving}}
         </div>
       </div>
-      <div class="item">
-        <div class="right floated content">
-          <div class="ui red icon compact button">
-            <i class="trash outline icon"></i>
-          </div>
-        </div>
-        <div class="content">
-          <div class="ui blue horizontal large label">136</div>
-          Maakt realistische keuzes
-        </div>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="ui cancel compact button">
+      Annuleer
+    </div>
+  </div>
+</div>
+
+<div class="ui modal tiny removeod">
+  <div class="ui header">
+    Verwijder een onderwijs doel
+  </div>
+  <div class="content">
+    <div class="item">
+      <div class="content">
+        <div class="ui blue horizontal large label">{{removingOd?.nr}}</div>
+        {{removingOd?.beschrijving}}
       </div>
-      <div class="item">
-        <div class="right floated content">
-          <div class="ui red icon compact button">
-            <i class="trash outline icon"></i>
-          </div>
-        </div>
-        <div class="content">
-          <div class="ui blue horizontal large label">147</div>
-          Reageert gepast in noodsituaties
-        </div>
-      </div>
-      <div class="item">
-        <div class="right floated content">
-          <div class="ui red icon compact button">
-            <i class="trash outline icon"></i>
-          </div>
-        </div>
-        <div class="content">
-          <div class="ui blue horizontal large label">149</div>
-          Is mobiel
-        </div>
-      </div>
+    </div>
+    <br> Wilt u deze OD verwijderen?
+  </div>
+  <div class="actions">
+    <div class="ui cancel compact button">
+      Annuleer
+    </div>
+    <div class="ui red ok compact button" (click)="removeOd()">
+      <i class="remove icon"></i>
+      Verwijder
     </div>
   </div>
 </div>

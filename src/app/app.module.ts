@@ -22,6 +22,7 @@ const appRoutes: Routes = [
   { path: 'locatie', component: TrajectLocatiesDetailComponent},
   { path: 'traject', component: TrajectComponent},
   { path: 'trajecten', component: TrajectenComponent},
+  { path: 'leerling', component: LeerlingenDetailComponent },
   { path: 'leerlingen', component: LeerlingenComponent },
   { path: 'ods', component: OdsComponent},
   { path: 'afspraken', component: AfsprakenComponent},
