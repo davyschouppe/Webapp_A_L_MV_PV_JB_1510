@@ -1,2 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
-@import '../semantic/dist/semantic.min.css';
+.trajectods, .trajectafspraken {
+    height: calc((100vh - 342px)/2) !important;
+    overflow-y: scroll !important;
+}
+
+.trajectlocaties {
+    height: calc(100vh - 260px) !important;
+    overflow-y: scroll !important;
+}

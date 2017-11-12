@@ -4,7 +4,7 @@
       <th class="collapsing"></th>
       <th>Beschrijving</th>
       <th class="right aligned">
-        <button class="ui green compact button">
+        <button class="ui green compact button" (click)="openNewRule()">
           <i class="plus icon"></i>Voeg toe</button>
       </th>
     </tr>
@@ -16,10 +16,10 @@
       </td>
       <td>{{afspraak.beschrijving}}</td>
       <td class="right aligned ">
-        <div class="ui icon compact button">
+        <div class="ui icon compact button" (click)="openEditRule(afspraak)">
           <i class="edit outline icon"></i>
         </div>
-        <div class="ui red icon compact button">
+        <div class="ui red icon compact button" (click)="openRemoveRule(afspraak)">
           <i class="trash outline icon"></i>
         </div>
       </td>
@@ -46,3 +46,83 @@
     </tr>
   </tfoot>
 </table>
+
+<div class="ui modal tiny makerule">
+  <div class="ui header">
+    Maak een locatie
+  </div>
+  <div class="content">
+    <form class="ui form">
+      <div class="field">
+        <label>Icoon</label>
+        <input type="text" name="icon" placeholder="Icon URL">
+      </div>
+      <div class="field">
+        <label>Beschrijving</label>
+        <input type="text" name="beschrijving" placeholder="Beschrijving">
+      </div>
+    </form>
+  </div>
+  <div class="actions">
+    <div class="ui red cancel compact button">
+      <i class="remove icon"></i>
+      Annuleer
+    </div>
+    <div class="ui green ok compact button">
+      <i class="checkmark icon"></i>
+      Maak
+    </div>
+  </div>
+</div>
+
+<div class="ui modal tiny editrule">
+  <div class="ui header">
+    Maak een locatie
+  </div>
+  <div class="content">
+    <form class="ui form">
+      <div class="field">
+        <label>Icoon</label>
+        <input type="text" name="icon" placeholder="Icon URL" value={{editingAfspraak?.icon}}>
+      </div>
+      <div class="field">
+        <label>Beschrijving</label>
+        <input type="text" name="beschrijving" placeholder="Beschrijving" value={{editingAfspraak?.beschrijving}}>
+      </div>
+    </form>
+  </div>
+  <div class="actions">
+    <div class="ui red cancel compact button">
+      <i class="remove icon"></i>
+      Annuleer
+    </div>
+    <div class="ui green ok compact button">
+      <i class="checkmark icon"></i>
+      Maak
+    </div>
+  </div>
+</div>
+
+<div class="ui modal tiny removerule">
+  <div class="ui header">
+    Verwijder een afspraak
+  </div>
+  <div class="content">
+    <div class="item">
+      <div class="content">
+        <img class="ui avatar image" src={{removingAfspraak?.icon}}>
+        {{removingAfspraak?.beschrijving}}
+      </div>
+    </div>
+    <br>Wilt u deze afspraak <strong>permanent</strong> verwijderen?
+  </div>
+  <div class="actions">
+    <div class="ui cancel compact button">
+      Annuleer
+    </div>
+    <div class="ui red ok compact button" (click)="removeRule()">
+      <i class="remove icon"></i>
+      Verwijder
+    </div>
+  </div>
+</div>

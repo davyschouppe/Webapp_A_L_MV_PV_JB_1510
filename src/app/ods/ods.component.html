@@ -4,7 +4,7 @@
       <th class="collapsing">Nr</th>
       <th>Beschrijving</th>
       <th class="right aligned">
-        <button class="ui green compact button">
+        <button class="ui green compact button" (click)="openNewOd()">
           <i class="plus icon"></i>Voeg toe</button>
       </th>
     </tr>
@@ -16,10 +16,10 @@
       </td>
       <td>{{od.beschrijving}}</td>
       <td class="right aligned ">
-        <div class="ui icon compact button">
+        <div class="ui icon compact button" (click)="openEditOd(od)">
           <i class="edit outline icon"></i>
         </div>
-        <div class="ui red icon compact button">
+        <div class="ui red icon compact button" (click)="openRemoveOd(od)">
           <i class="trash outline icon"></i>
         </div>
       </td>
@@ -46,3 +46,87 @@
     </tr>
   </tfoot>
 </table>
+
+<div class="ui modal tiny makeod">
+  <div class="ui header">
+    Maak een onderwijs doel
+  </div>
+  <div class="content">
+    <form class="ui form">
+      <div class="fields">
+        <div class="three wide field">
+          <label>Nr</label>
+          <input type="text" name="nr" placeholder="Nr">
+        </div>
+        <div class="thirteen wide field">
+          <label>Beschrijving</label>
+          <input type="text" name="beschrijving" placeholder="Beschrijving">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="actions">
+    <div class="ui red cancel compact button">
+      <i class="remove icon"></i>
+      Annuleer
+    </div>
+    <div class="ui green ok compact button">
+      <i class="checkmark icon"></i>
+      Maak
+    </div>
+  </div>
+</div>
+
+<div class="ui modal tiny editod">
+  <div class="ui header">
+    Pas een onderwijs doel aan
+  </div>
+  <div class="content">
+    <form class="ui form">
+      <div class="fields">
+        <div class="three wide field">
+          <label>Nr</label>
+          <input type="text" name="nr" placeholder="Nr" value={{editingOd?.nr}}>
+        </div>
+        <div class="thirteen wide field">
+          <label>Beschrijving</label>
+          <input type="text" name="beschrijving" placeholder="Beschrijving" value={{editingOd?.beschrijving}}>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="actions">
+    <div class="ui red cancel compact button">
+      <i class="remove icon"></i>
+      Annuleer
+    </div>
+    <div class="ui green ok compact button">
+      <i class="checkmark icon"></i>
+      Maak
+    </div>
+  </div>
+</div>
+
+<div class="ui modal tiny removeod">
+  <div class="ui header">
+    Verwijder een onderwijs doel
+  </div>
+  <div class="content">
+    <div class="item">
+      <div class="content">
+        <div class="ui blue horizontal large label">{{removingOd?.nr}}</div>
+        {{removingOd?.beschrijving}}
+      </div>
+    </div>
+    <br> Wilt u deze OD <strong>permanent</strong> verwijderen?
+  </div>
+  <div class="actions">
+    <div class="ui cancel compact button">
+      Annuleer
+    </div>
+    <div class="ui red ok compact button" (click)="removeOd()">
+      <i class="remove icon"></i>
+      Verwijder
+    </div>
+  </div>
+</div>
