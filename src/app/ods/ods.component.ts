@@ -14,7 +14,6 @@ import * as _ from 'lodash';
   providers: [OdsDataService]
 })
 export class OdsComponent implements OnInit {
-
   // private ods = new Array<Object>();
   private _ods: Od[];
   private myUnsubscribe: Subject<boolean> = new Subject<boolean>();
