@@ -26,7 +26,8 @@ const appRoutes: Routes = [
   { path: 'leerlingen', component: LeerlingenComponent },
   { path: 'ods', component: OdsComponent},
   { path: 'afspraken', component: AfsprakenComponent},
-  { path: '', redirectTo: '/trajecten', pathMatch: 'full'}
+  { path: '', redirectTo: 'trajecten', pathMatch: 'full'},
+  { path: '**', redirectTo: 'trajecten', pathMatch: 'full'}
 ]
 
 @NgModule({
@@ -49,10 +50,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     HttpModule,
-    RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
-    )
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
