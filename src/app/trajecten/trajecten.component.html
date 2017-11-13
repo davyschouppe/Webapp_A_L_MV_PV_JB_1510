@@ -5,35 +5,35 @@
 </div>
 <div class="ui segment">
   <div class="ui large middle aligned divided list">
-    <div class="item" routerLink="/traject" *ngFor="let traject of _trajecten">
+    <div class="item" *ngFor="let traject of _trajecten">
       <div class="content">
-        <a class="header">{{traject.naam}}</a>
-        <div class="description">Dit traject heeft {{getAmountOfLocations(traject)}} {{(getAmountOfLocations(traject) == 1 ) ? 'locatie' : 'locaties' }}</div>
+        <a class="header" routerLink="/traject/{{traject.id}}">{{traject.naam}}</a>
+        <div class="description">Dit traject heeft {{getAmountOfLocations(traject)}} {{(getAmountOfLocations(traject) == 1 ) ? 'locatie' : 'locaties'
+          }}
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="ui modal tiny maketraject">
+<form [formGroup]='traject' (ngSubmit)='onSubmit()' class="ui modal tiny maketraject">
   <div class="ui header">
     Maak een traject
   </div>
-  <div class="content">
-    <form class="ui form">
-      <div class="field">
-        <label>Naam</label>
-        <input type="text" name="Naam" placeholder="Naam">
-      </div>
-    </form>
+  <div class="content ui form">
+    <div class="field">
+      <label for="naam">Naam</label>
+      <input type='text' id='naam' formControlName='naam'>
+    </div>
   </div>
   <div class="actions">
     <div class="ui red cancel compact button">
       <i class="remove icon"></i>
       Annuleer
     </div>
-    <div class="ui green ok compact button">
+    <button class="ui green ok compact button" type='submit'>
       <i class="checkmark icon"></i>
       Maak
-    </div>
+    </button>
   </div>
-</div>
+</form>

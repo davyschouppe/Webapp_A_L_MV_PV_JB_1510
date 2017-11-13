@@ -1,6 +1,6 @@
 <div class="ui clearing segment">
     <div class="ui icon input">
-      <input type="text" placeholder="Traject naam..." value="Traject op school">
+      <input type="text" placeholder="Traject naam..." value={{_traject?.naam}}>
       <i class="edit icon"></i>
     </div>
     <button class="ui right floated red button">
@@ -8,11 +8,11 @@
   </div>
 <div class="ui grid">
   <div class="ten wide column">
-    <app-traject-locaties></app-traject-locaties>
+    <app-traject-locaties [traject]="_traject"></app-traject-locaties>
   </div>
   <div class="six wide column">
-    <app-traject-ods></app-traject-ods>
+    <app-traject-ods [traject]="_traject"></app-traject-ods>
     <div class="ui hidden divider"></div>
-    <app-traject-afspraken></app-traject-afspraken>
+    <app-traject-afspraken [counter]="count" [traject]="_traject"></app-traject-afspraken>
   </div>
 </div>

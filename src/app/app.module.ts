@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { NavigationbarComponent } from './navigationbar/navigationbar.component';
@@ -20,7 +21,7 @@ import {HttpModule} from '@angular/http';
 
 const appRoutes: Routes = [
   { path: 'locatie', component: TrajectLocatiesDetailComponent},
-  { path: 'traject', component: TrajectComponent},
+  { path: 'traject/:id', component: TrajectComponent},
   { path: 'trajecten', component: TrajectenComponent},
   { path: 'leerling', component: LeerlingenDetailComponent },
   { path: 'leerlingen', component: LeerlingenComponent },
@@ -49,6 +50,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
