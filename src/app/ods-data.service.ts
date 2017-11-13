@@ -20,5 +20,9 @@ export class OdsDataService {
       )
     );
   }
+  deleteOd(id: string) {
+    console.log(id);
+    return this.http.delete('http://localhost:4200/API/ontwikkelingsdoelen/' + id);
+  }
 
 }

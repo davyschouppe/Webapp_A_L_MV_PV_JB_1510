@@ -16,11 +16,13 @@ export class Od {
   set beschrijving(beschrijving: string) {
     this._beschrijving = beschrijving;
   }
-
   get nr(): number {
     return this._nr;
   }
   set nr(nr: number) {
     this._nr = nr;
+  }
+  get id(): string {
+    return this._id;
   }
 }
