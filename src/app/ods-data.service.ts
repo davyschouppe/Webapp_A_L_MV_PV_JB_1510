@@ -10,7 +10,7 @@ export class OdsDataService {
   private _ods = new Array<Od>();
 
   constructor(private http: Http) {
-    console.log(this._ods);
+    // console.log(this._ods);
   }
 
   get ods(): Observable<Od[]> {
@@ -24,5 +24,4 @@ export class OdsDataService {
     console.log(id);
     return this.http.delete('http://localhost:4200/API/ontwikkelingsdoelen/' + id);
   }
-
 }
