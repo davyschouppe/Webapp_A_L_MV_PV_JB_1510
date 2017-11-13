@@ -1,50 +1,14 @@
 <div class="ui clearing segment">
-  <button class="ui green right floated button" (click)="newTraject()">
+  <button class="ui green right floated button" (click)="openNewTraject()">
     <i class="plus icon"></i>Nieuw traject
   </button>
 </div>
 <div class="ui segment">
-  <div class="ui four stackable cards">
-    <div class="ui link green card" routerLink="/traject">
-      <a class="image">
-        <img src="https://chamilo.hogent.be/index.php?application=Chamilo%5CCore%5CRepository&go=DocumentDownloader&object=2906223&security_code=07dabdbe218725a9110180c6dfe2f9b8fa3655a7&time=1507581168&display=1">
-      </a>
+  <div class="ui large middle aligned divided list">
+    <div class="item" routerLink="/traject" *ngFor="let traject of _trajecten">
       <div class="content">
-        <p class="header">Traject op school</p>
-      </div>
-      <div class="extra content">
-        <p>
-          <i class="image icon"></i>
-          21 foto's
-        </p>
-      </div>
-    </div>
-    <div class="ui link green card" routerLink="/traject">
-      <a class="image">
-        <img src="https://chamilo.hogent.be/index.php?application=Chamilo%5CCore%5CRepository&go=DocumentDownloader&object=2906237&security_code=1abde38b959a5edaab59ea70796c1faf7e9f5d1f&time=1507581169&display=1">
-      </a>
-      <div class="content">
-        <p class="header">Traject op domein</p>
-      </div>
-      <div class="extra content">
-        <p>
-          <i class="image icon"></i>
-          15 foto's
-        </p>
-      </div>
-    </div>
-    <div class="ui link green card" routerLink="/traject">
-      <a class="image">
-        <img src="https://chamilo.hogent.be/index.php?application=Chamilo%5CCore%5CRepository&go=DocumentDownloader&object=2906226&security_code=830d39e44b7a6f7620d26e4af371f7fd49e7e38f&time=1507581168&display=1">
-      </a>
-      <div class="content">
-        <p class="header">Traject buiten school</p>
-      </div>
-      <div class="extra content">
-        <p>
-          <i class="image icon"></i>
-          17 foto's
-        </p>
+        <a class="header">{{traject.naam}}</a>
+        <div class="description">Dit traject heeft {{getAmountOfLocations(traject)}} {{(getAmountOfLocations(traject) == 1 ) ? 'locatie' : 'locaties' }}</div>
       </div>
     </div>
   </div>
@@ -63,13 +27,13 @@
     </form>
   </div>
   <div class="actions">
-      <div class="ui red cancel compact button">
-        <i class="remove icon"></i>
-        Annuleer
-      </div>
-      <div class="ui green ok compact button">
-        <i class="checkmark icon"></i>
-        Maak
-      </div>
+    <div class="ui red cancel compact button">
+      <i class="remove icon"></i>
+      Annuleer
+    </div>
+    <div class="ui green ok compact button">
+      <i class="checkmark icon"></i>
+      Maak
+    </div>
   </div>
 </div>
