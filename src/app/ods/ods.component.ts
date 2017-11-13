@@ -4,7 +4,8 @@ declare var $: any;
 import {OdsDataService} from '../ods-data.service';
 import {Od} from './od.model';
 import {Subject} from 'rxjs/Subject';
-
+// const _ = require('lodash');
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-ods',
@@ -62,11 +63,8 @@ export class OdsComponent implements OnInit {
 
   }
   removeOd() {
-    for (var x = 0; x < this.ods.length; x++) {
-      if (this.ods[x] === this.removingOd) {
-        this.ods.splice(x, 1);
-      }
-    }
+    _.remove(this._ods, {_id: this.removingOd._id});
+    this._odsDataService.deleteOd(this.removingOd._id).subscribe();
   }
 
 }
