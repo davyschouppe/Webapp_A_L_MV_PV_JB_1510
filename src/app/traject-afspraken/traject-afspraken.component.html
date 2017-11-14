@@ -6,7 +6,7 @@
   </div>
   <div class="ui segment trajectafspraken">
     <div class="ui middle aligned divided list">
-      <div class="item" *ngFor="let afspraak of afspraken">
+      <div class="item" *ngFor="let afspraak of traject?.afspraken">
         <div class="right floated content">
           <div class="ui red icon compact button" (click)="openRemoveRule(afspraak)">
             <i class="minus outline icon"></i>

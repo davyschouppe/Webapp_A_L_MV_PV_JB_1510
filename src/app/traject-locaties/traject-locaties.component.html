@@ -6,12 +6,12 @@
   </div>
   <div class="ui segment">
     <div class="ui three stackable cards trajectlocaties">
-      <div class="ui card" *ngFor="let locatie of locaties">
+      <div class="ui card" *ngFor="let locatie of traject?.locaties">
         <a class="image">
-          <img src={{locatie.fotos[0]}}>
+          <img src={{locatie?.afbeeldingen[0].link}}>
         </a>
         <div class="content">
-          <p class="header">{{locatie.naam}}</p>
+          <p class="header">{{locatie?.naam}}</p>
         </div>
         <div class="extra clearing content">
           <button class="ui red compact icon right floated button" (click)="openRemoveLocation(locatie)">
@@ -22,7 +22,7 @@
           </button>
           <p>
             <i class="image icon"></i>
-            {{locatie.fotos.length}}
+            {{locatie.afbeeldingen.length}}
           </p>
         </div>
       </div>
@@ -35,12 +35,12 @@
     Maak een locatie
   </div>
   <div class="content">
-    <form class="ui form">
+    <!--<form class="ui form">
       <div class="field">
         <label>Naam</label>
         <input type="text" name="Naam" placeholder="Naam">
       </div>
-    </form>
+    </form>-->
   </div>
   <div class="actions">
     <div class="ui red cancel compact button">
@@ -69,29 +69,6 @@
     <div class="ui red ok compact button" (click)="removeLocation()">
       <i class="remove icon"></i>
       Verwijder
-    </div>
-  </div>
-</div>
-
-<div class="ui modal tiny editlocatie">
-  <div class="ui header">
-    Pas een locatie aan
-  </div>
-  <div class="content">
-    <form class="ui form">
-      <div class="field">
-        <label>Naam</label>
-        <input type="text" name="Naam" placeholder="Naam" value={{editLocatie?.naam}}>
-      </div>
-    </form>
-  </div>
-  <div class="actions">
-    <div class="ui cancel compact button">
-      Annuleer
-    </div>
-    <div class="ui green ok compact button">
-      <i class="checkmark icon"></i>
-      Pas aan
     </div>
   </div>
 </div>

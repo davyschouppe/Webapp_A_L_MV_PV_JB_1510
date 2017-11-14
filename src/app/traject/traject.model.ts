@@ -6,14 +6,19 @@ export class Traject {
 
     private _id: string;
     private _naam: string;
-    private _ods: Od[];
+    private _ontwikkelingsdoelen: Od[];
     private _afspraken: Afspraak[];
     private _locaties: Locatie[];
 
-    constructor(_id: string, naam: string, ods: Od[], afspraken: Afspraak[], locaties: Locatie[]) {
-        this._id = _id;
+    static fromJSON(json): Traject {
+        const rec = new Traject(json.naam, json.ontwikkelingsdoelen, json.afspraken, json.locaties);
+        rec._id = json._id;
+        return rec;
+    }
+
+    constructor(naam: string, ods?: Od[], afspraken?: Afspraak[], locaties?: Locatie[]) {
         this._naam = naam;
-        this._ods = ods;
+        this._ontwikkelingsdoelen = ods;
         this._afspraken = afspraken;
         this._locaties = locaties;
     }
@@ -25,10 +30,10 @@ export class Traject {
     }
 
     get ods(): Od[] {
-        return this._ods;
+        return this._ontwikkelingsdoelen;
     }
     set ods(ods: Od[]) {
-        this._ods = ods;
+        this._ontwikkelingsdoelen = ods;
     }
 
     get afspraken(): Afspraak[] {
@@ -47,5 +52,15 @@ export class Traject {
 
     get id(): string {
         return this._id;
+    }
+
+    toJSON() {
+        return {
+            _id: this._id,
+            naam: this._naam,
+            ontwikkelingsdoelen: this._ontwikkelingsdoelen,
+            afspraken: this._afspraken,
+            locaties: this._locaties
+        }
     }
 }
