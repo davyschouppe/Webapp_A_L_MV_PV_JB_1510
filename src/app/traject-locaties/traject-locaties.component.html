@@ -17,7 +17,7 @@
           <button class="ui red compact icon right floated button" (click)="openRemoveLocation(locatie)">
             <i class="trash outline icon"></i>
           </button>
-          <button class="ui grey compact icon right floated button" routerLink="/locatie">
+          <button class="ui grey compact icon right floated button" (click)="routeToLocatie(locatie._id)">
             <i class="edit icon"></i>
           </button>
           <p>
@@ -37,7 +37,7 @@
   <div class="content ui form">
       <div class="field">
         <label for="naam">Naam</label>
-        <input type='text' id='naam' formControlName='naam'>
+        <input type='text' id='naam' formControlName='naam' autocomplete="off">
       </div>
   </div>
   <div class="actions">

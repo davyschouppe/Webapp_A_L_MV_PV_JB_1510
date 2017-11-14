@@ -22,7 +22,8 @@ export class TrajectenComponent implements OnInit {
   private myUnsubscribe: Subject<boolean> = new Subject<boolean>();
   private traject: FormGroup;
 
-  constructor(private _trajectenDataService: TrajectenDataService, private fb: FormBuilder) { }
+  constructor(private _trajectenDataService: TrajectenDataService,
+    private fb: FormBuilder) { }
 
   ngOnInit() {
     this._trajectenDataService.trajecten.takeUntil(this.myUnsubscribe).subscribe(

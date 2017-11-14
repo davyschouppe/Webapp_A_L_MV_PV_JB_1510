@@ -7,7 +7,11 @@ export class Locatie {
   private _afbeeldingen: Afbeelding[];
 
   static fromJSON(json): Locatie {
-    const rec = new Locatie(json.naam, json.afbeeldingen);
+    var afbeeldingen = new Array<Afbeelding>();
+    for(let foto of json.afbeeldingen) {
+        afbeeldingen.push(Afbeelding.fromJSON(foto));
+    }
+    const rec = new Locatie(json.naam, afbeeldingen);
     rec._id = json._id;
     return rec;
   }

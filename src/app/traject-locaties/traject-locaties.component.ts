@@ -4,6 +4,7 @@ import { Locatie } from '../traject-locaties-detail/locatie.model';
 import { Subject } from 'rxjs/Subject';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TrajectenDataService } from '../trajecten-data.service';
+import { Router } from '@angular/router';
 import * as _ from 'lodash';
 declare var $: any;
 
@@ -19,7 +20,9 @@ export class TrajectLocatiesComponent implements OnInit {
   private locatie: FormGroup;
   removing: Locatie;
 
-  constructor(private _trajectenDataService: TrajectenDataService, private fb: FormBuilder) { }
+  constructor(private _trajectenDataService: TrajectenDataService,
+    private fb: FormBuilder,
+    private router: Router) { }
 
   ngOnInit() {
     this.locatie = this.fb.group({
@@ -50,5 +53,9 @@ export class TrajectLocatiesComponent implements OnInit {
     if(locatie.afbeeldingen.length != 0) {
       return locatie.afbeeldingen[0].link;
     }
+  }
+
+  routeToLocatie(id: string){
+    this.router.navigate(['/locatie', this.traject.id, id]);
   }
 }

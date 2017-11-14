@@ -11,7 +11,19 @@ export class Traject {
     private _locaties: Locatie[];
 
     static fromJSON(json): Traject {
-        const rec = new Traject(json.naam, json.ontwikkelingsdoelen, json.afspraken, json.locaties);
+        var locaties = new Array<Locatie>();
+        var ontwikkelingsdoelen = new Array<Od>();
+        var afspraken = new Array<Afspraak>();
+        for(let loc of json.locaties) {
+            locaties.push(Locatie.fromJSON(loc));
+        }
+        for(let od of json.ontwikkelingsdoelen) {
+            ontwikkelingsdoelen.push(Od.fromJSON(od));
+        }
+        for(let af of json.afspraken) {
+            afspraken.push(Afspraak.fromJSON(af));
+        }
+        const rec = new Traject(json.naam, json.ontwikkelingsdoelen, json.afspraken, locaties);
         rec._id = json._id;
         return rec;
     }

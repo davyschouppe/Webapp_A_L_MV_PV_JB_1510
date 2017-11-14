@@ -18,7 +18,5 @@ export class TrajectComponent implements OnInit {
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     this.trajectDataService.getTraject(id).subscribe(item => this._traject = item);
-
-    console.log(this._traject); //DIT GEEFT OOK AL UNDIFINED?
   }
 }
