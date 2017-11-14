@@ -9,7 +9,6 @@ declare var $: any;
 })
 export class TrajectAfsprakenComponent implements OnInit {
   @Input() traject: Traject;
-  @Input() counter: number;
   //private afspraken = new Array<Object>();
   removeAfspraak;
 

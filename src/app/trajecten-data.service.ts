@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Traject } from './traject/traject.model';
+import { Locatie } from './traject-locaties-detail/locatie.model';
 import { Http, Response } from '@angular/http';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
@@ -25,9 +26,17 @@ export class TrajectenDataService {
     console.log(id);
     return this.http.delete(`${this._appUrl}/trajecten/${id}`);
   }
+  deleteLocatie(lid:string, tid: string) {
+    console.log(tid + "/" + lid);
+    return this.http.delete(`${this._appUrl}/trajecten/${tid}/locaties/${lid}`);
+  }
 
   addTraject(traject): Observable<Traject> {
     return this.http.post(`${this._appUrl}/trajecten`, traject)
       .map(res => res.json()).map(item => Traject.fromJSON(item));
+  }
+  addLocatie(locatie, id: string): Observable<Locatie> {
+    return this.http.post(`${this._appUrl}/trajecten/${id}/locaties`, locatie)
+      .map(res => res.json()).map(item => Locatie.fromJSON(item));
   }
 }

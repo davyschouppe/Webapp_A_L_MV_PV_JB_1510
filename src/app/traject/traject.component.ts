@@ -11,7 +11,6 @@ import { TrajectenDataService } from '../trajecten-data.service';
 })
 export class TrajectComponent implements OnInit {
   private _traject: Traject;
-  private count: number = 12345;
 
   constructor(private route: ActivatedRoute,
     private trajectDataService: TrajectenDataService) {}

@@ -33,11 +33,10 @@ export class TrajectenComponent implements OnInit {
     })
   }
 
-  onSubmit() {
+  newTraject() {
     const traject = new Traject(this.traject.value.naam);
     this._trajectenDataService.addTraject(traject.toJSON()).subscribe(item => this._trajecten.push(item));
   }
-
   openNewTraject() {
     $('.ui.modal.maketraject')
       .modal('show')
