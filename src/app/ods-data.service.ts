@@ -24,4 +24,8 @@ export class OdsDataService {
     console.log(id);
     return this.http.delete('http://localhost:4200/API/ontwikkelingsdoelen/' + id);
   }
+  editOd(od: Od) {
+    console.log(od);
+    return this.http.put('http://localhost:4200/API/ontwikkelingsdoelen/' + od.id, od.toJSON());
+  }
 }
