@@ -20,4 +20,8 @@ export class AfsprakenDataServiceService {
       )
     );
   }
+
+  editAfspraak(afspraak: Afspraak) {
+      return this.http.put('http://localhost:4200/API/afspraken/' + afspraak.id, afspraak.toJSON());
+    }
 }

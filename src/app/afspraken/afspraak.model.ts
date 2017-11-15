@@ -25,4 +25,11 @@ export class Afspraak {
   get id(): string {
     return this._id;
   }
+  toJSON() {
+    return {
+      _id: this._id,
+      icon: this._icon,
+      beschrijving: this._beschrijving
+    };
+  }
 }

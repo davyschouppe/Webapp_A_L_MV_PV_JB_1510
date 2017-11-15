@@ -75,7 +75,7 @@
   </div>
 </div>
 
-<div class="ui modal tiny editrule">
+<form class="ui modal tiny editrule" [formGroup]='editingAfspraakFormGroup'>
   <div class="ui header">
     Maak een locatie
   </div>
@@ -83,11 +83,11 @@
     <div class="ui form">
       <div class="field">
         <label>Icoon</label>
-        <input type="text" name="icon" placeholder="Icon URL" value={{editingAfspraak?.icon}}>
+        <input type="text" name="icon" placeholder="Icon URL" formControlName='icon' value={{editingAfspraak?.icon}}>
       </div>
       <div class="field">
         <label>Beschrijving</label>
-        <input type="text" name="beschrijving" placeholder="Beschrijving" value={{editingAfspraak?.beschrijving}}>
+        <input type="text" name="beschrijving" placeholder="Beschrijving" formControlName='beschrijving' value={{editingAfspraak?.beschrijving}}>
       </div>
     </div>
   </div>
@@ -96,12 +96,12 @@
       <i class="remove icon"></i>
       Annuleer
     </div>
-    <div class="ui green ok compact button">
+    <div class="ui green ok compact button" (click)="editRule()">
       <i class="checkmark icon"></i>
       Maak
     </div>
   </div>
-</div>
+</form>
 
 <div class="ui modal tiny removerule">
   <div class="ui header">
