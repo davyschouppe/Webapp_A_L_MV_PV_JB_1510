@@ -1,10 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 .trajectods, .trajectafspraken {
-    height: calc((100vh - 342px)/2) !important;
+    height: calc((100vh - 344px)/2) !important;
     overflow-y: scroll !important;
 }
 
 .trajectlocaties {
-    height: calc(100vh - 260px) !important;
+    height: calc(100vh - 255px) !important;
     overflow-y: scroll !important;
 }

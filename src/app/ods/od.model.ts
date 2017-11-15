@@ -4,7 +4,12 @@ export class Od {
   private _nr: number;
   private _beschrijving: string;
 
-  constructor ( _id: string, nr: number, beschrijving: string) {
+  static fromJSON(json): Od {
+    const rec = new Od(json._id, json.nr, json.beschrijving);
+    return rec;
+  }
+
+  constructor(_id: string, nr: number, beschrijving: string) {
     this._id = _id;
     this._nr = nr;
     this._beschrijving = beschrijving;
@@ -25,11 +30,12 @@ export class Od {
   get id(): string {
     return this._id;
   }
+
   toJSON() {
     return {
       _id: this._id,
       nr: this._nr,
-      beschrijving: this.beschrijving
-    };
+      beschrijving: this._beschrijving
+    }
   }
 }

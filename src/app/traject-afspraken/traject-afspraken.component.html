@@ -13,7 +13,7 @@
           </div>
         </div>
         <div class="content">
-          <img class="ui avatar image" src={{afspraak.icon}}> {{afspraak.beschrijving}}
+          <img class="ui avatar image" src={{afspraak?.icon}}> {{afspraak?.beschrijving}}
         </div>
       </div>
     </div>
@@ -25,7 +25,7 @@
     Voeg een afspraak toe
   </div>
   <div class="content trajectafspraken">
-    <div class="ui middle aligned divided list" *ngFor="let afspraak of afspraken">
+    <div class="ui middle aligned divided list" *ngFor="let afspraak of _afspraken">
       <div class="item">
         <div class="right floated content">
           <div class="ui green icon compact button" (click)="addRule(afspraak)">
@@ -33,14 +33,14 @@
           </div>
         </div>
         <div class="content">
-          <img class="ui avatar image" src={{afspraak.icon}}> {{afspraak.beschrijving}}
+          <img class="ui avatar image" src={{afspraak?.icon}}> {{afspraak?.beschrijving}}
         </div>
       </div>
     </div>
   </div>
   <div class="actions">
-    <div class="ui cancel compact button">
-      Annuleer
+    <div class="ui blue cancel compact button">
+      Sluit
     </div>
   </div>
 </div>
@@ -52,7 +52,7 @@
   <div class="content">
     <div class="item">
       <div class="content">
-        <img class="ui avatar image" src={{removeAfspraak?.icon}}> {{removeAfspraak?.beschrijving}}
+        <img class="ui avatar image" src={{removing?.icon}}> {{removing?.beschrijving}}
       </div>
     </div>
     <br> Wilt u deze afspraak verwijderen?
