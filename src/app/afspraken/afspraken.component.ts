@@ -66,6 +66,7 @@ export class AfsprakenComponent implements OnInit {
   addRule() {
     const afspraak = new Afspraak(this.afspraak.value.icon, this.afspraak.value.beschrijving);
     this._afsprakenDataService.addAfspraak(afspraak.toJSON()).subscribe(item => this._afspraken.push(item));
+    this.afspraak.reset();
   }
   editRule() {
     this.editingAfspraak.beschrijving = _.isNull(this.editingAfspraakFormGroup.value.beschrijving) ? this.editingAfspraak.beschrijving : this.editingAfspraakFormGroup.value.beschrijving;

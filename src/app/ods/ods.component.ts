@@ -69,6 +69,7 @@ export class OdsComponent implements OnInit {
   addOd() {
     const od = new Od(this.od.value.nr, this.od.value.beschrijving);
     this._odsDataService.addOd(od.toJSON()).subscribe(item => this._ods.push(item));
+    this.od.reset();
   }
   editOd() {
     this.editingOd.beschrijving = _.isNull(this.editingOdFormGroup.value.beschrijving) ? this.editingOd.beschrijving : this.editingOdFormGroup.value.beschrijving;
