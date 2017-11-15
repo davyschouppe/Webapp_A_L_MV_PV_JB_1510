@@ -25,4 +25,11 @@ export class Od {
   get id(): string {
     return this._id;
   }
+  toJSON() {
+    return {
+      _id: this._id,
+      nr: this._nr,
+      beschrijving: this.beschrijving
+    };
+  }
 }
