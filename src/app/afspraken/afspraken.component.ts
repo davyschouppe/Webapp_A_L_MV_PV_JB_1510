@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AfsprakenDataServiceService} from '../afspraken-data-service.service';
 import {Afspraak} from "./afspraak.model";
 import {Subject} from "rxjs/Subject";
+import * as _ from 'lodash';
 declare var $: any;
 
 @Component({
@@ -58,11 +59,8 @@ export class AfsprakenComponent implements OnInit {
 
   }
   removeRule() {
-    for (var x = 0; x < this.afspraken.length; x++) {
-      if (this.afspraken[x] === this.removingAfspraak) {
-        this.afspraken.splice(x, 1);
-      }
-    }
+    _.remove(this._afspraken, {_id: this.removingAfspraak._id});
+    this._afsprakenDataService.deleteAfspraak(this.removingAfspraak._id).subscribe();
   }
 
 }

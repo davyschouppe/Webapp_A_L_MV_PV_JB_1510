@@ -20,4 +20,7 @@ export class AfsprakenDataServiceService {
       )
     );
   }
+  deleteAfspraak(id: string) {
+    return this.http.delete('http://localhost:4200/API/afspraken/' + id);
+  }
 }
