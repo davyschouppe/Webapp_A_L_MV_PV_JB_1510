@@ -21,6 +21,7 @@ export class OdsComponent implements OnInit {
   removingOd;
   editingOd;
   private od: FormGroup;
+  private editingOdFormGroup: FormGroup;
 
   constructor(private _odsDataService: OdsDataService, private fb: FormBuilder) {
     // this.ods = [{'nr': 130, 'beschrijving': 'Kiest adequaat hulpmiddel'},
@@ -37,6 +38,10 @@ export class OdsComponent implements OnInit {
     this.od = this.fb.group({
       nr: [null, [Validators.required]],
       beschrijving: [null, [Validators.required, Validators.minLength(2)]]
+    this.editingOdFormGroup = this.fb.group({
+      nr: [null, [Validators.required]],
+      beschrijving: [null, [Validators.required]],
+
     });
   }
 
@@ -66,6 +71,11 @@ export class OdsComponent implements OnInit {
     this._odsDataService.addOd(od.toJSON()).subscribe(item => this._ods.push(item));
   }
   editOd() {
+    this.editingOd.beschrijving = _.isNull(this.editingOdFormGroup.value.beschrijving) ? this.editingOd.beschrijving : this.editingOdFormGroup.value.beschrijving;
+    this.editingOd.nr = _.isNull(this.editingOdFormGroup.value.nr) ? this.editingOd.nr : this.editingOdFormGroup.value.nr;
+    this._ods[_.findIndex(this._ods, {_id : this.editingOd.id})] = this.editingOd;
+    this._odsDataService.editOd(this.editingOd).subscribe();
+    this.editingOdFormGroup.reset();
 
   }
   removeOd() {
