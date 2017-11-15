@@ -3,28 +3,45 @@ import { Afbeelding } from './afbeelding.model';
 export class Locatie {
 
   private _id: string;
-  private _fotos: Afbeelding[];
-  private _beschrijving: string;
+  private _naam: string;
+  private _afbeeldingen: Afbeelding[];
 
-  constructor(_id: string, fotos: Afbeelding[], beschrijving: string) {
-    this._id = _id;
-    this._fotos = fotos;
-    this._beschrijving = beschrijving;
+  static fromJSON(json): Locatie {
+    var afbeeldingen = new Array<Afbeelding>();
+    for(let foto of json.afbeeldingen) {
+        afbeeldingen.push(Afbeelding.fromJSON(foto));
+    }
+    const rec = new Locatie(json.naam, afbeeldingen);
+    rec._id = json._id;
+    return rec;
   }
 
-  get beschrijving(): string {
-    return this._beschrijving;
+  constructor(naam: string, afbeeldingen?: Afbeelding[]) {
+    this._naam = naam;
+    this._afbeeldingen = afbeeldingen;
   }
-  set beschrijving(beschrijving: string) {
-    this._beschrijving = beschrijving;
+
+  get naam(): string {
+    return this._naam;
   }
-  get fotos(): Afbeelding[] {
-    return this._fotos;
+  set naam(naam: string) {
+    this._naam = naam;
   }
-  set fotos(fotos: Afbeelding[]) {
-    this._fotos = fotos;
+  get afbeeldingen(): Afbeelding[] {
+    return this._afbeeldingen;
+  }
+  set afbeeldingen(fotos: Afbeelding[]) {
+    this._afbeeldingen = fotos;
   }
   get id(): string {
     return this._id;
+  }
+
+  toJSON() {
+    return {
+      _id: this._id,
+      naam: this._naam,
+      afbeeldingen: this._afbeeldingen,
+    }
   }
 }

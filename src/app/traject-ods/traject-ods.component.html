@@ -12,8 +12,8 @@
             <i class="minus outline icon"></i>
           </div>
         </div>
+        <div class="ui blue large label left floated">{{od.nr}}</div>
         <div class="content middle aligned">
-          <div class="ui blue horizontal large label">{{od.nr}}</div>
           {{od.beschrijving}}
         </div>
       </div>
@@ -26,23 +26,23 @@
     Voeg onderwijs doelen toe
   </div>
   <div class="content trajectods">
-    <div class="ui middle aligned divided list" *ngFor="let od of ods">
+    <div class="ui middle aligned divided list" *ngFor="let od of _ods">
       <div class="item">
         <div class="right floated content">
           <div class="ui green icon compact button" (click)="addOd(od)">
             <i class="plus outline icon"></i>
           </div>
         </div>
+        <div class="ui blue large label left floated">{{od.nr}}</div>
         <div class="content middle aligned">
-          <div class="ui blue horizontal large label">{{od.nr}}</div>
           {{od.beschrijving}}
         </div>
       </div>
     </div>
   </div>
   <div class="actions">
-    <div class="ui cancel compact button">
-      Annuleer
+    <div class="ui blue cancel compact button">
+      Sluit
     </div>
   </div>
 </div>
@@ -54,8 +54,8 @@
   <div class="content">
     <div class="item">
       <div class="content">
-        <div class="ui blue horizontal large label">{{removingOd?.nr}}</div>
-        {{removingOd?.beschrijving}}
+        <div class="ui blue horizontal large label">{{removing?.nr}}</div>
+        {{removing?.beschrijving}}
       </div>
     </div>
     <br> Wilt u deze OD verwijderen?

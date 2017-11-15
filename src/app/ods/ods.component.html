@@ -1,49 +1,50 @@
 <table class="ui table">
   <thead>
-    <tr class="ui grey inverted table">
-      <th class="collapsing">Nr</th>
-      <th>Beschrijving</th>
-      <th class="right aligned">
-        <button class="ui green compact button" (click)="openNewOd()">
-          <i class="plus icon"></i>Voeg toe</button>
-      </th>
-    </tr>
+  <tr class="ui grey inverted table">
+    <th class="collapsing">Nr</th>
+    <th>Beschrijving</th>
+    <th class="right aligned">
+      <button class="ui green compact button" (click)="openNewOd()">
+        <i class="plus icon"></i>Voeg toe
+      </button>
+    </th>
+  </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let od of ods">
-      <td>
-        <div class="ui blue horizontal large label">{{od.nr}}</div>
-      </td>
-      <td>{{od.beschrijving}}</td>
-      <td class="right aligned ">
-        <div class="ui icon compact button" (click)="openEditOd(od)">
-          <i class="edit outline icon"></i>
-        </div>
-        <div class="ui red icon compact button" (click)="openRemoveOd(od)">
-          <i class="trash outline icon"></i>
-        </div>
-      </td>
-    </tr>
+  <tr *ngFor="let od of ods">
+    <td>
+      <div class="ui blue horizontal large label">{{od.nr}}</div>
+    </td>
+    <td>{{od.beschrijving}}</td>
+    <td class="right aligned ">
+      <div class="ui icon compact button" (click)="openEditOd(od)">
+        <i class="edit outline icon"></i>
+      </div>
+      <div class="ui red icon compact button" (click)="openRemoveOd(od)">
+        <i class="trash outline icon"></i>
+      </div>
+    </td>
+  </tr>
 
   </tbody>
 
   <tfoot>
-    <tr>
-      <th colspan="3">
-        <div class="ui right floated pagination menu">
-          <a class="icon item">
-            <i class="left chevron icon"></i>
-          </a>
-          <a class="item">1</a>
-          <a class="item">2</a>
-          <a class="item">3</a>
-          <a class="item">4</a>
-          <a class="icon item">
-            <i class="right chevron icon"></i>
-          </a>
-        </div>
-      </th>
-    </tr>
+  <tr>
+    <th colspan="3">
+      <div class="ui right floated pagination menu">
+        <a class="icon item">
+          <i class="left chevron icon"></i>
+        </a>
+        <a class="item">1</a>
+        <a class="item">2</a>
+        <a class="item">3</a>
+        <a class="item">4</a>
+        <a class="icon item">
+          <i class="right chevron icon"></i>
+        </a>
+      </div>
+    </th>
+  </tr>
   </tfoot>
 </table>
 
@@ -77,35 +78,37 @@
   </div>
 </div>
 
-<div class="ui modal tiny editod">
-  <div class="ui header">
-    Pas een ontwikkelingsdoel aan
-  </div>
-  <div class="content">
-    <div class="ui form">
-      <div class="fields">
-        <div class="three wide field">
-          <label>Nr</label>
-          <input type="text" name="nr" placeholder="Nr" value={{editingOd?.nr}}>
-        </div>
-        <div class="thirteen wide field">
-          <label>Beschrijving</label>
-          <input type="text" name="beschrijving" placeholder="Beschrijving" value={{editingOd?.beschrijving}}>
+<form [formGroup]='editingOdFormGroup'>
+  <div class="ui modal tiny editod">
+    <div class="ui header">
+      Pas een ontwikkelingsdoel aan
+    </div>
+    <div class="content">
+      <div class="ui form">
+        <div class="fields">
+          <div class="three wide field">
+            <label>Nr</label>
+            <input type="text" name="nr" placeholder="Nr" formControlName='nr' value={{editingOd?.nr}}>
+          </div>
+          <div class="thirteen wide field">
+            <label>Beschrijving</label>
+            <input type="text" name="beschrijving" placeholder="Beschrijving" formControlName='beschrijving' value={{editingOd?.beschrijving}}>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="actions">
-    <div class="ui red cancel compact button">
-      <i class="remove icon"></i>
-      Annuleer
+    <div class="actions">
+      <div class="ui red cancel compact button">
+        <i class="remove icon"></i>
+        Annuleer
+      </div>
+      <div class="ui green ok compact button" (click)="editOd()">
+        <i class="checkmark icon"></i>
+        Maak
+      </div>
     </div>
-    <div class="ui green ok compact button">
-      <i class="checkmark icon"></i>
-      Maak
-    </div>
   </div>
-</div>
+</form>
 
 <div class="ui modal tiny removeod">
   <div class="ui header">

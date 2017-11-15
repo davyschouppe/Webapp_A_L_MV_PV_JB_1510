@@ -69,11 +69,8 @@ export class AfsprakenComponent implements OnInit {
     this.editingAfspraakFormGroup.reset();
   }
   removeRule() {
-    for (var x = 0; x < this.afspraken.length; x++) {
-      if (this.afspraken[x] === this.removingAfspraak) {
-        this.afspraken.splice(x, 1);
-      }
-    }
+    _.remove(this._afspraken, {_id: this.removingAfspraak._id});
+    this._afsprakenDataService.deleteAfspraak(this.removingAfspraak._id).subscribe();
   }
 
 }

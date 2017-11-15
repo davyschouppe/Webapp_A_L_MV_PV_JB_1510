@@ -6,6 +6,7 @@ import {Od} from './od.model';
 import {Subject} from 'rxjs/Subject';
 // const _ = require('lodash');
 import * as _ from 'lodash';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-ods',
@@ -19,8 +20,9 @@ export class OdsComponent implements OnInit {
   private myUnsubscribe: Subject<boolean> = new Subject<boolean>();
   removingOd;
   editingOd;
+  private editingOdFormGroup: FormGroup;
 
-  constructor(private _odsDataService: OdsDataService) {
+  constructor(private _odsDataService: OdsDataService,  private fb: FormBuilder) {
     // this.ods = [{'nr': 130, 'beschrijving': 'Kiest adequaat hulpmiddel'},
     //   {'nr': 135, 'beschrijving': 'Gaat om met hulpverleners'},
     //   {'nr': 136, 'beschrijving': 'Maakt realistische keuzes'},
@@ -32,6 +34,11 @@ export class OdsComponent implements OnInit {
   ngOnInit() {
     this._odsDataService.ods.takeUntil(this.myUnsubscribe).subscribe(
       items => this._ods = items);
+
+    this.editingOdFormGroup = this.fb.group({
+      nr: [null, [Validators.required]],
+      beschrijving: [null, [Validators.required]],
+    });
   }
 
   ngOnDestroy() {
@@ -59,6 +66,11 @@ export class OdsComponent implements OnInit {
     this.ods.push(od);
   }
   editOd() {
+    this.editingOd.beschrijving = _.isNull(this.editingOdFormGroup.value.beschrijving) ? this.editingOd.beschrijving : this.editingOdFormGroup.value.beschrijving;
+    this.editingOd.nr = _.isNull(this.editingOdFormGroup.value.nr) ? this.editingOd.nr : this.editingOdFormGroup.value.nr;
+    this._ods[_.findIndex(this._ods, {_id : this.editingOd.id})] = this.editingOd;
+    this._odsDataService.editOd(this.editingOd).subscribe();
+    this.editingOdFormGroup.reset();
 
   }
   removeOd() {
