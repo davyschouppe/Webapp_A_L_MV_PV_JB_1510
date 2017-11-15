@@ -5,11 +5,11 @@ export class Od {
   private _beschrijving: string;
 
   static fromJSON(json): Od {
-    const rec = new Od(json._id, json.nr, json.beschrijving);
+    const rec = new Od(json.nr, json.beschrijving, json._id);
     return rec;
   }
 
-  constructor(_id: string, nr: number, beschrijving: string) {
+  constructor(nr: number, beschrijving: string, _id?: string) {
     this._id = _id;
     this._nr = nr;
     this._beschrijving = beschrijving;
@@ -33,9 +33,9 @@ export class Od {
 
   toJSON() {
     return {
-      _id: this._id,
       nr: this._nr,
-      beschrijving: this._beschrijving
-    }
+      beschrijving: this._beschrijving,
+      _id: this._id,
+    };
   }
 }

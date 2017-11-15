@@ -48,7 +48,7 @@
   </tfoot>
 </table>
 
-<div class="ui modal tiny makeod">
+<form [formGroup]='od' (ngSubmit)='addOd()' class="ui modal tiny makeod">
   <div class="ui header">
     Maak een ontwikkelingsdoel
   </div>
@@ -57,11 +57,11 @@
       <div class="fields">
         <div class="three wide field">
           <label>Nr</label>
-          <input type="text" name="nr" placeholder="Nr">
+          <input type="text" name="nr" formControlName='nr' placeholder="Nr">
         </div>
         <div class="thirteen wide field">
           <label>Beschrijving</label>
-          <input type="text" name="beschrijving" placeholder="Beschrijving">
+          <input type="text" name="beschrijving" formControlName='beschrijving' placeholder="Beschrijving">
         </div>
       </div>
     </div>
@@ -71,12 +71,12 @@
       <i class="remove icon"></i>
       Annuleer
     </div>
-    <div class="ui green ok compact button">
+    <button class="ui green ok compact button" type='submit'>
       <i class="checkmark icon"></i>
       Maak
-    </div>
+    </button>
   </div>
-</div>
+</form>
 
 <form [formGroup]='editingOdFormGroup'>
   <div class="ui modal tiny editod">
