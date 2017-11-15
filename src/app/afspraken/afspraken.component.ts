@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {AfsprakenDataServiceService} from '../afspraken-data-service.service';
 import {Afspraak} from "./afspraak.model";
 import {Subject} from "rxjs/Subject";
-import * as _ from 'lodash';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 declare var $: any;
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-afspraken',
@@ -17,8 +18,9 @@ export class AfsprakenComponent implements OnInit {
   //private afspraken = new Array<Object>();
   removingAfspraak;
   editingAfspraak;
+  private editingAfspraakFormGroup: FormGroup;
 
-  constructor(private _afsprakenDataService: AfsprakenDataServiceService) {
+  constructor(private _afsprakenDataService: AfsprakenDataServiceService, private fb: FormBuilder) {
     // this.afspraken = [{ 'icon': '../../assets/images/trap.png', 'beschrijving': 'We lopen rechts op de trap' },
     // { 'icon': '../../assets/images/stappen-per-2.jpg', 'beschrijving': 'We stappen per 2' },
     // { 'icon': '../../assets/images/deur-kloppen.png', 'beschrijving': 'We kloppen op de deur voor we binnengaan' },
@@ -30,6 +32,10 @@ export class AfsprakenComponent implements OnInit {
   ngOnInit() {
     this._afsprakenDataService.afspraken.takeUntil(this.myUnsubscribe).subscribe(
       items => this._afspraken = items);
+    this.editingAfspraakFormGroup = this.fb.group({
+      icon: [null, [Validators.required]],
+      beschrijving: [null, [Validators.required]],
+    });
   }
   ngOnDestroy() {
     this.myUnsubscribe.next(true);
@@ -56,7 +62,11 @@ export class AfsprakenComponent implements OnInit {
     this.afspraken.push(afspraak);
   }
   editRule() {
-
+    this.editingAfspraak.beschrijving = _.isNull(this.editingAfspraakFormGroup.value.beschrijving) ? this.editingAfspraak.beschrijving : this.editingAfspraakFormGroup.value.beschrijving;
+    this.editingAfspraak.icon = _.isNull(this.editingAfspraakFormGroup.value.icon) ? this.editingAfspraak.icon : this.editingAfspraakFormGroup.value.icon;
+    this._afspraken[_.findIndex(this._afspraken, {_id : this.editingAfspraak.id})] = this.editingAfspraak;
+    this._afsprakenDataService.editAfspraak(this.editingAfspraak).subscribe();
+    this.editingAfspraakFormGroup.reset();
   }
   removeRule() {
     _.remove(this._afspraken, {_id: this.removingAfspraak._id});

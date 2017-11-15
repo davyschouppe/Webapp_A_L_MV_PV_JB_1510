@@ -36,6 +36,6 @@ export class Afspraak {
       _id: this._id,
       icon: this._icon,
       beschrijving: this._beschrijving
-    }
+    };
   }
 }
