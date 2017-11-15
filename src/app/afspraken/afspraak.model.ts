@@ -5,11 +5,11 @@ export class Afspraak {
   private _beschrijving: string;
 
   static fromJSON(json): Afspraak {
-    const rec = new Afspraak(json._id, json.icon, json.beschrijving);
+    const rec = new Afspraak(json.icon, json.beschrijving, json._id);
     return rec;
   }
 
-  constructor(_id: string, icon: string, beschrijving: string) {
+  constructor(icon: string, beschrijving: string, _id?: string) {
     this._id = _id;
     this._icon = icon;
     this._beschrijving = beschrijving;

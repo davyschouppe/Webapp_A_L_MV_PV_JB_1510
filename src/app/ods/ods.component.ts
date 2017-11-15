@@ -38,10 +38,10 @@ export class OdsComponent implements OnInit {
     this.od = this.fb.group({
       nr: [null, [Validators.required]],
       beschrijving: [null, [Validators.required, Validators.minLength(2)]]
+    });
     this.editingOdFormGroup = this.fb.group({
       nr: [null, [Validators.required]],
-      beschrijving: [null, [Validators.required]],
-
+      beschrijving: [null, [Validators.required, Validators.minLength(2)]]
     });
   }
 

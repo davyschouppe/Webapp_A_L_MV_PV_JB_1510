@@ -26,9 +26,9 @@ export class OdsDataService {
 
   addOd(od): Observable<Od> {
     return this.http.post(this._appUrl, od).map(res => res.json()).map(item => Od.fromJSON(item));
+  }
 
   editOd(od: Od) {
-    console.log(od);
     return this.http.put('http://localhost:4200/API/ontwikkelingsdoelen/' + od.id, od.toJSON());
   }
 }

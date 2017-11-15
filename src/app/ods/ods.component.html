@@ -78,35 +78,34 @@
   </div>
 </form>
 
-<form [formGroup]='editingOdFormGroup'>
-  <div class="ui modal tiny editod">
-    <div class="ui header">
-      Pas een ontwikkelingsdoel aan
-    </div>
-    <div class="content">
-      <div class="ui form">
-        <div class="fields">
-          <div class="three wide field">
-            <label>Nr</label>
-            <input type="text" name="nr" placeholder="Nr" formControlName='nr' value={{editingOd?.nr}}>
-          </div>
-          <div class="thirteen wide field">
-            <label>Beschrijving</label>
-            <input type="text" name="beschrijving" placeholder="Beschrijving" formControlName='beschrijving' value={{editingOd?.beschrijving}}>
-          </div>
+<form class="ui modal tiny editod" [formGroup]='editingOdFormGroup' (submit)='editOd()'>
+  <div class="ui header">
+    Pas een ontwikkelingsdoel aan
+  </div>
+  <div class="content">
+    <div class="ui form">
+      <div class="fields">
+        <div class="three wide field">
+          <label>Nr</label>
+          <input type="text" name="nr" placeholder="Nr" formControlName='nr' value={{editingOd?.nr}}>
+        </div>
+        <div class="thirteen wide field">
+          <label>Beschrijving</label>
+          <input type="text" name="beschrijving" placeholder="Beschrijving" formControlName='beschrijving'
+                 value={{editingOd?.beschrijving}}>
         </div>
       </div>
     </div>
-    <div class="actions">
-      <div class="ui red cancel compact button">
-        <i class="remove icon"></i>
-        Annuleer
-      </div>
-      <div class="ui green ok compact button" (click)="editOd()">
-        <i class="checkmark icon"></i>
-        Maak
-      </div>
+  </div>
+  <div class="actions">
+    <div class="ui red cancel compact button">
+      <i class="remove icon"></i>
+      Annuleer
     </div>
+    <button class="ui green ok compact button" type='submit'>
+      <i class="checkmark icon"></i>
+      Maak
+    </button>
   </div>
 </form>
 
