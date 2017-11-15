@@ -4,7 +4,12 @@ export class Afspraak {
   private _icon: string;
   private _beschrijving: string;
 
-  constructor ( _id: string, icon: string, beschrijving: string) {
+  static fromJSON(json): Afspraak {
+    const rec = new Afspraak(json._id, json.icon, json.beschrijving);
+    return rec;
+  }
+
+  constructor(_id: string, icon: string, beschrijving: string) {
     this._id = _id;
     this._icon = icon;
     this._beschrijving = beschrijving;
@@ -24,5 +29,13 @@ export class Afspraak {
   }
   get id(): string {
     return this._id;
+  }
+
+  toJSON() {
+    return {
+      _id: this._id,
+      icon: this._icon,
+      beschrijving: this._beschrijving
+    }
   }
 }

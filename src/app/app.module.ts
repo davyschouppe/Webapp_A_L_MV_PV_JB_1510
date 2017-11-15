@@ -20,7 +20,7 @@ import { LeerlingenDetailTrackingComponent } from './leerlingen-detail-tracking/
 import {HttpModule} from '@angular/http';
 
 const appRoutes: Routes = [
-  { path: 'locatie', component: TrajectLocatiesDetailComponent},
+  { path: 'locatie/:trajectid/:locatieid', component: TrajectLocatiesDetailComponent},
   { path: 'traject/:id', component: TrajectComponent},
   { path: 'trajecten', component: TrajectenComponent},
   { path: 'leerling', component: LeerlingenDetailComponent },

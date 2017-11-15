@@ -16,14 +16,14 @@
   </div>
 </div>
 
-<form [formGroup]='traject' (ngSubmit)='onSubmit()' class="ui modal tiny maketraject">
+<form [formGroup]='traject' (ngSubmit)='newTraject()' class="ui modal tiny maketraject">
   <div class="ui header">
     Maak een traject
   </div>
   <div class="content ui form">
     <div class="field">
       <label for="naam">Naam</label>
-      <input type='text' id='naam' formControlName='naam'>
+      <input type='text' id='naam' formControlName='naam' autocomplete="off">
     </div>
   </div>
   <div class="actions">

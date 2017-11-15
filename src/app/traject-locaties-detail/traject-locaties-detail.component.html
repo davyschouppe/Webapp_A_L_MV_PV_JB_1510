@@ -1,45 +1,74 @@
 <div class="ui segments">
   <div class="ui clearing segment">
-    <button class="ui left floated blue button" routerLink="/traject">
+    <button class="ui left floated blue button" routerLink="/traject/{{_traject?.id}}">
       <i class="arrow left icon"></i>Terug</button>
     <div class="ui icon input">
-      <input type="text" placeholder="Locatie naam..." value="Kleine speelplaats">
+      <input type="text" placeholder="Locatie naam..." value="{{_locatie.naam}}">
       <i class="edit icon"></i>
     </div>
-    <button class="ui right floated green button">
+    <button class="ui right floated green button" (click)="openNewAfbeelding()">
       <i class="plus icon"></i>Nieuwe foto</button>
   </div>
   <div class="ui segment">
-    <div class="ui four special cards">
-
-      <div class="card">
+    <div class="ui four cards">
+      <div class="card special" *ngFor="let afbeelding of _locatie?.afbeeldingen">
         <div class="blurring dimmable image">
           <div class="ui dimmer">
             <div class="content">
               <div class="center">
-                <div class="ui inverted red button">
+                <div class="ui inverted red button" (click)="openRemove(afbeelding)">
                   <i class="trash outline icon"></i>Delete</div>
               </div>
             </div>
           </div>
-          <img src="https://chamilo.hogent.be/index.php?application=Chamilo%5CCore%5CRepository&go=DocumentDownloader&object=2906218&security_code=385ed15ed6eda0d04080d2ef5b4bb07c8e813322&time=1507581168&display=1">
+          <img src={{afbeelding?.link}}>
         </div>
+        {{setDimmer()}}
       </div>
-
-      <div class="card">
-        <div class="blurring dimmable image">
-          <div class="ui dimmer">
-            <div class="content">
-              <div class="center">
-                <div class="ui inverted red button">
-                  <i class="trash outline icon"></i>Delete</div>
-              </div>
-            </div>
-          </div>
-          <img src="https://chamilo.hogent.be/index.php?application=Chamilo%5CCore%5CRepository&go=DocumentDownloader&object=2906219&security_code=555f3e4c55295d77bd84ee1617ec7bb55d8be950&time=1507581168&display=1">
-        </div>
-      </div>
-
     </div>
   </div>
 </div>
+
+<form [formGroup]='afbeelding' (ngSubmit)='newAfbeelding()' class="ui modal tiny makeafbeelding">
+  <div class="ui header">
+    Voeg een afbeelding toe
+  </div>
+  <div class="content ui form">
+    <div class="field">
+      <label for="link">Link</label>
+      <input type='text' id='link' formControlName='link' autocomplete="off">
+    </div>
+  </div>
+  <div class="actions">
+    <div class="ui red cancel compact button">
+      <i class="remove icon"></i>
+      Annuleer
+    </div>
+    <button class="ui green ok compact button" type='submit'>
+      <i class="checkmark icon"></i>
+      Maak
+    </button>
+  </div>
+</form>
+
+
+<div class="ui modal tiny remove">
+    <div class="ui header">
+      Verwijder een locatie
+    </div>
+    <div class="content">
+      Wilt u deze afbeelding <strong>permanent</strong> verwijderen?
+      <br>
+      <br>
+      <img class="ui medium rounded image" src={{removing?.link}}>
+    </div>
+    <div class="actions">
+      <div class="ui cancel compact button">
+        Annuleer
+      </div>
+      <div class="ui red ok compact button" (click)="removeAfbeelding()">
+        <i class="remove icon"></i>
+        Verwijder
+      </div>
+    </div>
+  </div>
