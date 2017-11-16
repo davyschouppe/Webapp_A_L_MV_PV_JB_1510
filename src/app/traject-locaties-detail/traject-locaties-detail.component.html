@@ -3,7 +3,7 @@
     <button class="ui left floated blue button" routerLink="/traject/{{_traject?.id}}">
       <i class="arrow left icon"></i>Terug</button>
     <div class="ui icon input">
-      <input type="text" placeholder="Locatie naam..." value="{{_locatie.naam}}">
+      <input type="text" placeholder="Locatie naam..." value="{{_locatie?.naam}}">
       <i class="edit icon"></i>
     </div>
     <button class="ui right floated green button" (click)="openNewAfbeelding()">
@@ -37,11 +37,11 @@
     <div class="field">
       <label for="link">Link</label>
       <input type='text' id='link' formControlName='link' autocomplete="off">
-      <div *ngIf='afbeelding.get("naam").errors?.required && afbeelding.get("naam").touched' class='ui pointing red basic label'>
+      <div *ngIf='afbeelding.get("link").errors?.required && afbeelding.get("link").touched' class='ui pointing red basic label'>
         Dit veld is verplicht.
       </div>
-      <div *ngIf='afbeelding.get("naam").errors?.minlength && afbeelding.get("naam").touched' class='ui pointing red basic label'>
-        Dit veld moet minimum {{afbeelding.get("naam").errors?.minlength.requiredLength}} tekens lang zijn.
+      <div *ngIf='afbeelding.get("link").errors?.minlength && afbeelding.get("link").touched' class='ui pointing red basic label'>
+        Dit veld moet minimum {{afbeelding.get("link").errors?.minlength.requiredLength}} tekens lang zijn.
       </div>
     </div>
   </div>
