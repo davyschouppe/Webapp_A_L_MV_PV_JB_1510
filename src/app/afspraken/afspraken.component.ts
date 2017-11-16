@@ -18,6 +18,7 @@ export class AfsprakenComponent implements OnInit {
   //private afspraken = new Array<Object>();
   removingAfspraak;
   editingAfspraak;
+  private afspraak: FormGroup;
   private editingAfspraakFormGroup: FormGroup;
 
   constructor(private _afsprakenDataService: AfsprakenDataServiceService, private fb: FormBuilder) {
@@ -32,9 +33,13 @@ export class AfsprakenComponent implements OnInit {
   ngOnInit() {
     this._afsprakenDataService.afspraken.takeUntil(this.myUnsubscribe).subscribe(
       items => this._afspraken = items);
+    this.afspraak = this.fb.group({
+      icon: [null, [Validators.required]],
+      beschrijving: [null, [Validators.required, Validators.minLength(2)]]
+    });
     this.editingAfspraakFormGroup = this.fb.group({
       icon: [null, [Validators.required]],
-      beschrijving: [null, [Validators.required]],
+      beschrijving: [null, [Validators.required, Validators.minLength(2)]],
     });
   }
   ngOnDestroy() {
@@ -58,8 +63,10 @@ export class AfsprakenComponent implements OnInit {
     $('.ui.modal.removerule').modal('show');
   }
 
-  addRule(afspraak) {
-    this.afspraken.push(afspraak);
+  addRule() {
+    const afspraak = new Afspraak(this.afspraak.value.icon, this.afspraak.value.beschrijving);
+    this._afsprakenDataService.addAfspraak(afspraak.toJSON()).subscribe(item => this._afspraken.push(item));
+    this.afspraak.reset();
   }
   editRule() {
     this.editingAfspraak.beschrijving = _.isNull(this.editingAfspraakFormGroup.value.beschrijving) ? this.editingAfspraak.beschrijving : this.editingAfspraakFormGroup.value.beschrijving;

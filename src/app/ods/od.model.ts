@@ -33,9 +33,9 @@ export class Od {
 
   toJSON() {
     return {
+      _id: this._id,
       nr: this._nr,
       beschrijving: this._beschrijving,
-      _id: this._id,
     };
   }
 }

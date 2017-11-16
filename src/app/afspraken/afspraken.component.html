@@ -47,7 +47,7 @@
   </tfoot>
 </table>
 
-<div class="ui modal tiny makerule">
+<form [formGroup]='afspraak' (ngSubmit)='addRule()' class="ui modal tiny makerule">
   <div class="ui header">
     Maak een locatie
   </div>
@@ -55,11 +55,11 @@
     <div class="ui form">
       <div class="field">
         <label>Icoon</label>
-        <input type="text" name="icon" placeholder="Icon URL">
+        <input type="text" name="icon" formControlName='icon' placeholder="Icon URL">
       </div>
       <div class="field">
         <label>Beschrijving</label>
-        <input type="text" name="beschrijving" placeholder="Beschrijving">
+        <input type="text" name="beschrijving" formControlName='beschrijving' placeholder="Beschrijving">
       </div>
     </div>
   </div>
@@ -68,16 +68,16 @@
       <i class="remove icon"></i>
       Annuleer
     </div>
-    <div class="ui green ok compact button">
+    <button class="ui green ok compact button" type='submit'>
       <i class="checkmark icon"></i>
       Maak
-    </div>
+    </button>
   </div>
-</div>
+</form>
 
-<form class="ui modal tiny editrule" [formGroup]='editingAfspraakFormGroup'>
+<form class="ui modal tiny editrule" [formGroup]='editingAfspraakFormGroup' (submit)='editRule()' >
   <div class="ui header">
-    Maak een locatie
+    Pas een afspraak aan
   </div>
   <div class="content">
     <div class="ui form">
@@ -96,10 +96,10 @@
       <i class="remove icon"></i>
       Annuleer
     </div>
-    <div class="ui green ok compact button" (click)="editRule()">
+    <button class="ui green ok compact button" type='submit'>
       <i class="checkmark icon"></i>
       Maak
-    </div>
+    </button>
   </div>
 </form>
 

@@ -16,7 +16,7 @@ export class AfsprakenDataServiceService {
   get afspraken(): Observable<Afspraak[]> {
     return this.http.get(this._appUrl).map(response =>
       response.json().map(item =>
-        new Afspraak(item._id, item.icon, item.beschrijving)
+        new Afspraak(item.icon, item.beschrijving, item._id)
       )
     );
   }
@@ -24,6 +24,10 @@ export class AfsprakenDataServiceService {
   editAfspraak(afspraak: Afspraak) {
       return this.http.put('http://localhost:4200/API/afspraken/' + afspraak.id, afspraak.toJSON());
     }
+
+  addAfspraak(afspraak): Observable<Afspraak> {
+    return this.http.post(this._appUrl, afspraak).map(res => res.json()).map(item => Afspraak.fromJSON(item));
+  }
 
   deleteAfspraak(id: string) {
     return this.http.delete('http://localhost:4200/API/afspraken/' + id);
