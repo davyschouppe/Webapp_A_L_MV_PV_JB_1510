@@ -58,6 +58,7 @@ export class TrajectLocatiesComponent implements OnInit {
     if(locatie.afbeeldingen.length != 0) {
       return locatie.afbeeldingen[0].link;
     }
+    return "";
   }
 
   routeToLocatie(id: string){
