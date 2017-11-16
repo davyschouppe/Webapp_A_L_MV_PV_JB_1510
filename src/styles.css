@@ -8,3 +8,7 @@
     height: calc(100vh - 255px) !important;
     overflow-y: scroll !important;
 }
+
+.cardimage, .cardimage img {
+    height: 120px !important;
+}
