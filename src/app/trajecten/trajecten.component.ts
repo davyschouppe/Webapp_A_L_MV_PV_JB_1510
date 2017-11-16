@@ -30,18 +30,23 @@ export class TrajectenComponent implements OnInit {
       items => this._trajecten = items);
 
     this.traject = this.fb.group({
-      naam: ['', [Validators.required, Validators.minLength(2)]]
+      naam: ['', [Validators.required, Validators.minLength(3)]]
     })
   }
 
   newTraject() {
-    const traject = new Traject(this.traject.value.naam);
-    this._trajectenDataService.addTraject(traject.toJSON()).subscribe(item => this._trajecten.push(item));
+    if(this.traject.valid) {
+      const traject = new Traject(this.traject.value.naam);
+      this._trajectenDataService.addTraject(traject.toJSON()).subscribe(item => this._trajecten.push(item));
+      $('.ui.modal.maketraject').modal('hide');
+    }
   }
   openNewTraject() {
-    $('.ui.modal.maketraject')
-      .modal('show')
-      ;
+    this.traject.reset();
+    $('.ui.modal.maketraject').modal('show');
+  }
+  closeNewTraject() {
+    $('.ui.modal.maketraject').modal('hide');
   }
 
   getAmountOfLocations(traject: Traject): number {

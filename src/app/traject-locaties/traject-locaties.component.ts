@@ -26,18 +26,23 @@ export class TrajectLocatiesComponent implements OnInit {
 
   ngOnInit() {
     this.locatie = this.fb.group({
-      naam: ['', [Validators.required, Validators.minLength(2)]]
+      naam: ['', [Validators.required, Validators.minLength(3)]]
     })
   }
 
   newLocation() {
-    const locatie = new Locatie(this.locatie.value.naam);
-    this._trajectenDataService.addLocatie(locatie.toJSON(), this.traject.id).subscribe(item => this.traject.locaties.push(item));
+    if(this.locatie.valid) {
+      const locatie = new Locatie(this.locatie.value.naam);
+      this._trajectenDataService.addLocatie(locatie.toJSON(), this.traject.id).subscribe(item => this.traject.locaties.push(item));
+      $('.ui.modal.makelocation').modal('hide');
+    }
   }
   openNewLocation() {
-    $('.ui.modal.makelocation')
-      .modal('show')
-      ;
+    this.locatie.reset();
+    $('.ui.modal.makelocation').modal('show');
+  }
+  closeNewLocation() {
+    $('.ui.modal.makelocation').modal('hide');
   }
 
   openRemoveLocation(locatie: Locatie) {

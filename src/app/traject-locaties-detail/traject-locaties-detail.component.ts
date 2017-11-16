@@ -49,11 +49,18 @@ export class TrajectLocatiesDetailComponent implements OnInit {
   }
 
   newAfbeelding() {
-    const afbeelding = new Afbeelding(this.afbeelding.value.link);
-    this._trajectenDataService.addAfbeelding(this._traject.id, this._locatie.id, afbeelding.toJSON()).subscribe(item => this._locatie.afbeeldingen.push(item));
+    if(this.afbeelding.valid) {
+      const afbeelding = new Afbeelding(this.afbeelding.value.link);
+      this._trajectenDataService.addAfbeelding(this._traject.id, this._locatie.id, afbeelding.toJSON()).subscribe(item => this._locatie.afbeeldingen.push(item));
+      $('.ui.modal.makeafbeelding').modal('hide');
+    }
   }
   openNewAfbeelding() {
+    this.afbeelding.reset();
     $('.ui.modal.makeafbeelding').modal('show');
+  }
+  closeNewAfbeelding() {
+    $('.ui.modal.makeafbeelding').modal('hide');
   }
 
   openRemove(afbeelding: Afbeelding) {

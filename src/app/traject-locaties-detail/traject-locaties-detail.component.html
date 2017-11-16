@@ -37,14 +37,20 @@
     <div class="field">
       <label for="link">Link</label>
       <input type='text' id='link' formControlName='link' autocomplete="off">
+      <div *ngIf='afbeelding.get("naam").errors?.required && afbeelding.get("naam").touched' class='ui pointing red basic label'>
+        Dit veld is verplicht.
+      </div>
+      <div *ngIf='afbeelding.get("naam").errors?.minlength && afbeelding.get("naam").touched' class='ui pointing red basic label'>
+        Dit veld moet minimum {{afbeelding.get("naam").errors?.minlength.requiredLength}} tekens lang zijn.
+      </div>
     </div>
   </div>
   <div class="actions">
-    <div class="ui red cancel compact button">
+    <button class="ui red compact button" type='button' (click)="closeNewAfbeelding()">
       <i class="remove icon"></i>
       Annuleer
-    </div>
-    <button class="ui green ok compact button" type='submit'>
+    </button>
+    <button class="ui green compact button" type='submit'>
       <i class="checkmark icon"></i>
       Maak
     </button>

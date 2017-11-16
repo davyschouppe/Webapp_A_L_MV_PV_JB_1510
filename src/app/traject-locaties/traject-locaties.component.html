@@ -38,14 +38,20 @@
       <div class="field">
         <label for="naam">Naam</label>
         <input type='text' id='naam' formControlName='naam' autocomplete="off">
+        <div *ngIf='locatie.get("naam").errors?.required && locatie.get("naam").touched' class='ui pointing red basic label'>
+          Dit veld is verplicht.
+        </div>
+        <div *ngIf='locatie.get("naam").errors?.minlength && locatie.get("naam").touched' class='ui pointing red basic label'>
+          Dit veld moet minimum {{locatie.get("naam").errors?.minlength.requiredLength}} tekens lang zijn.
+        </div>
       </div>
   </div>
   <div class="actions">
-    <div class="ui red cancel compact button">
+    <button class="ui red compact button" type='button' (click)="closeNewLocation()">
       <i class="remove icon"></i>
       Annuleer
-    </div>
-    <button class="ui green ok compact button" type='submit'>
+    </button>
+    <button class="ui green compact button" type='submit'>
       <i class="checkmark icon"></i>
       Maak
     </button>
