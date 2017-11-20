@@ -1,3 +1,29 @@
+<div class="ui segments">
+  <div class="ui clearing grey inverted segment">
+    <h4 class="ui left floated header">Afspraken</h4>
+    <button class="ui right floated green compact button" (click)="openNewRule()">
+      <i class="plus icon"></i>Voeg toe</button>
+  </div>
+  <div class="ui segment afsprakenscroll">
+    <div class="ui middle aligned divided list">
+      <div class="item afsprakenscrollrow" *ngFor="let afspraak of afspraken">
+        <div class="right floated content">
+            <div class="ui icon compact button" (click)="openEditRule(afspraak)">
+              <i class="edit outline icon"></i>
+            </div>
+            <div class="ui red icon compact button" (click)="openRemoveRule(afspraak)">
+              <i class="trash outline icon"></i>
+            </div>
+        </div>
+        <div class="content">
+          <img class="ui avatar image" src={{afspraak?.icon}}> {{afspraak?.beschrijving}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <table class="ui table">
   <thead>
     <tr class="ui grey inverted table">
@@ -9,7 +35,7 @@
       </th>
     </tr>
   </thead>
-  <tbody>
+  <tbody class="afsprakenscroll">
     <tr *ngFor="let afspraak of afspraken">
       <td>
         <img class="ui avatar image" src={{afspraak.icon}}>
@@ -24,27 +50,7 @@
         </div>
       </td>
     </tr>
-
   </tbody>
-
-  <tfoot>
-    <tr>
-      <th colspan="3">
-        <div class="ui right floated pagination menu">
-          <a class="icon item">
-            <i class="left chevron icon"></i>
-          </a>
-          <a class="item">1</a>
-          <a class="item">2</a>
-          <a class="item">3</a>
-          <a class="item">4</a>
-          <a class="icon item">
-            <i class="right chevron icon"></i>
-          </a>
-        </div>
-      </th>
-    </tr>
-  </tfoot>
 </table>
 
 <form [formGroup]='afspraak' (ngSubmit)='addRule()' class="ui modal tiny makerule">
@@ -75,7 +81,7 @@
   </div>
 </form>
 
-<form class="ui modal tiny editrule" [formGroup]='editingAfspraakFormGroup' (submit)='editRule()' >
+<form class="ui modal tiny editrule" [formGroup]='editingAfspraakFormGroup' (submit)='editRule()'>
   <div class="ui header">
     Pas een afspraak aan
   </div>
@@ -110,11 +116,11 @@
   <div class="content">
     <div class="item">
       <div class="content">
-        <img class="ui avatar image" src={{removingAfspraak?.icon}}>
-        {{removingAfspraak?.beschrijving}}
+        <img class="ui avatar image" src={{removingAfspraak?.icon}}> {{removingAfspraak?.beschrijving}}
       </div>
     </div>
-    <br>Wilt u deze afspraak <strong>permanent</strong> verwijderen?
+    <br>Wilt u deze afspraak
+    <strong>permanent</strong> verwijderen?
   </div>
   <div class="actions">
     <div class="ui cancel compact button">
