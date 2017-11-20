@@ -32,9 +32,10 @@ export class TrajectLocatiesComponent implements OnInit {
 
   newLocation() {
     if(this.locatie.valid) {
+      $('.ui.modal.makelocation').modal('hide');
       const locatie = new Locatie(this.locatie.value.naam);
       this._trajectenDataService.addLocatie(locatie.toJSON(), this.traject.id).subscribe(item => this.traject.locaties.push(item));
-      $('.ui.modal.makelocation').modal('hide');
+      this.locatie.reset();
     }
   }
   openNewLocation() {
