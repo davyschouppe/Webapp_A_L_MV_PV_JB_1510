@@ -1,5 +1,5 @@
 <div class="ui grey inverted secondary pointing menu">
-  <div class="ui container">
+  <div class="ui container" *ngIf='(currentUser | async) else loginlink'>
     <a class="item" routerLink="/trajecten" routerLinkActive="active">
       Trajecten
     </a>
@@ -13,9 +13,18 @@
       Leerlingen
     </a>
     <div class="right menu">
-      <a class="item">
+      <a class="item" routerLink="/logout" routerLinkActive="active">
         Logout
       </a>
     </div>
   </div>
+  <ng-template #loginlink>
+    <div class="ui container">
+      <div class="right menu">
+        <a class="item" routerLinkActive='active' routerLink="/login">
+          Login
+        </a>
+      </div>
+    </div>
+  </ng-template>
 </div>
