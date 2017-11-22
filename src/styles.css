@@ -12,3 +12,17 @@
 .cardimage, .cardimage img {
     height: 120px !important;
 }
+
+.odsscroll, .afsprakenscroll {
+    height: calc(100vh - 175px) !important;
+    overflow-y: scroll !important;
+}
+
+.odsscrollnumber {
+    width: 50px;
+    text-align: center;
+}
+
+.odsscrollrow, .afsprakenscrollrow {
+    vertical-align: middle;
+}

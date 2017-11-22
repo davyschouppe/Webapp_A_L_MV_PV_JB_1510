@@ -1,52 +1,28 @@
-<table class="ui table">
-  <thead>
-  <tr class="ui grey inverted table">
-    <th class="collapsing">Nr</th>
-    <th>Beschrijving</th>
-    <th class="right aligned">
-      <button class="ui green compact button" (click)="openNewOd()">
-        <i class="plus icon"></i>Voeg toe
-      </button>
-    </th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let od of ods">
-    <td>
-      <div class="ui blue horizontal large label">{{od.nr}}</div>
-    </td>
-    <td>{{od.beschrijving}}</td>
-    <td class="right aligned ">
-      <div class="ui icon compact button" (click)="openEditOd(od)">
-        <i class="edit outline icon"></i>
+<div class="ui segments">
+  <div class="ui clearing grey inverted segment">
+    <h4 class="ui left floated header">Ontwikkelingsdoelen</h4>
+    <button class="ui right floated green compact button" (click)="openNewOd()">
+      <i class="plus icon"></i>Voeg toe</button>
+  </div>
+  <div class="ui segment odsscroll">
+    <div class="ui middle aligned divided list">
+      <div class="item odsscrollrow" *ngFor="let od of ods">
+        <div class="right floated content">
+          <div class="ui icon compact button" (click)="openEditOd(od)">
+            <i class="edit outline icon"></i>
+          </div>
+          <div class="ui red icon compact button" (click)="openRemoveOd(od)">
+            <i class="trash outline icon"></i>
+          </div>
+        </div>
+        <div class="ui blue large label left floated odsscrollnumber">{{od.nr}}</div>
+        <div class="content middle aligned">
+          {{od.beschrijving}}
+        </div>
       </div>
-      <div class="ui red icon compact button" (click)="openRemoveOd(od)">
-        <i class="trash outline icon"></i>
-      </div>
-    </td>
-  </tr>
-
-  </tbody>
-
-  <tfoot>
-  <tr>
-    <th colspan="3">
-      <div class="ui right floated pagination menu">
-        <a class="icon item">
-          <i class="left chevron icon"></i>
-        </a>
-        <a class="item">1</a>
-        <a class="item">2</a>
-        <a class="item">3</a>
-        <a class="item">4</a>
-        <a class="icon item">
-          <i class="right chevron icon"></i>
-        </a>
-      </div>
-    </th>
-  </tr>
-  </tfoot>
-</table>
+    </div>
+  </div>
+</div>
 
 <form [formGroup]='od' (ngSubmit)='addOd()' class="ui modal tiny makeod">
   <div class="ui header">
@@ -91,8 +67,7 @@
         </div>
         <div class="thirteen wide field">
           <label>Beschrijving</label>
-          <input type="text" name="beschrijving" placeholder="Beschrijving" formControlName='beschrijving'
-                 value={{editingOd?.beschrijving}}>
+          <input type="text" name="beschrijving" placeholder="Beschrijving" formControlName='beschrijving' value={{editingOd?.beschrijving}}>
         </div>
       </div>
     </div>
@@ -120,7 +95,8 @@
         {{removingOd?.beschrijving}}
       </div>
     </div>
-    <br> Wilt u deze OD <strong>permanent</strong> verwijderen?
+    <br> Wilt u deze OD
+    <strong>permanent</strong> verwijderen?
   </div>
   <div class="actions">
     <div class="ui cancel compact button">
