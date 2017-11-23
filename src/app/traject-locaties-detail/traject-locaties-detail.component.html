@@ -35,6 +35,28 @@
   </div>
   <div class="content ui form">
     <div class="field">
+      <label for="link">File</label>
+      <input type="file" id="file" (change)="onFileChange($event)" #fileInput>
+    </div>
+  </div>
+  <div class="actions">
+    <button class="ui red compact button" type='button' (click)="closeNewAfbeelding()">
+      <i class="remove icon"></i>
+      Annuleer
+    </button>
+    <button class="ui green compact button" type='submit' [disabled]="form.invalid || loading">
+      <i class="checkmark icon"></i>
+      Maak
+    </button>
+  </div>
+</form>
+
+<!--<form [formGroup]='afbeelding' (ngSubmit)='newAfbeelding()' class="ui modal tiny makeafbeelding">
+  <div class="ui header">
+    Voeg een afbeelding toe
+  </div>
+  <div class="content ui form">
+    <div class="field">
       <label for="link">Link</label>
       <input type='text' id='link' formControlName='link' autocomplete="off">
       <div *ngIf='afbeelding.get("link").errors?.required && afbeelding.get("link").touched' class='ui pointing red basic label'>
@@ -55,8 +77,7 @@
       Maak
     </button>
   </div>
-</form>
-
+</form>-->
 
 <div class="ui modal tiny remove">
     <div class="ui header">

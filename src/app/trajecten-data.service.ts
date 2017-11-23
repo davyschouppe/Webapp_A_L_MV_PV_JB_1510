@@ -58,6 +58,10 @@ export class TrajectenDataService {
     return this.http.post(`${this._appUrl}/trajecten/${trajectid}/locaties/${locatieid}/afbeeldingen`, afbeelding)
       .map(res => res.json()).map(item => Afbeelding.fromJSON(item));
   }
+  uploadAfbeelding(trajectid: string, locatieid: string, afbeelding): Observable<Afbeelding> {
+    return this.http.post(`${this._appUrl}/trajecten/${trajectid}/locaties/${locatieid}/afbeeldingen`, afbeelding)
+      .map(res => res.json()).map(item => Afbeelding.fromJSON(item));
+  }
   addAfspraak(afspraak, id: string): Observable<Afspraak> {
     return this.http.post(`${this._appUrl}/trajecten/${id}/afspraken`, afspraak)
       .map(res => res.json()).map(item => Afspraak.fromJSON(item));
