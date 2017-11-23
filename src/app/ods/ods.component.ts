@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OrderByPipe } from '../custom_pipes/order-by.pipe';
 
 declare var $: any;
 import {OdsDataService} from '../ods-data.service';
@@ -23,14 +24,7 @@ export class OdsComponent implements OnInit {
   private od: FormGroup;
   private editingOdFormGroup: FormGroup;
 
-  constructor(private _odsDataService: OdsDataService, private fb: FormBuilder) {
-    // this.ods = [{'nr': 130, 'beschrijving': 'Kiest adequaat hulpmiddel'},
-    //   {'nr': 135, 'beschrijving': 'Gaat om met hulpverleners'},
-    //   {'nr': 136, 'beschrijving': 'Maakt realistische keuzes'},
-    //   {'nr': 147, 'beschrijving': 'Reageert gepast in noodsituaties'},
-    //   {'nr': 149, 'beschrijving': 'Is mobiel'},
-    //   {'nr': 151, 'beschrijving': 'Maakt gebruik van openbaar of ander gemeenschappelijk vervoer'}];
-  }
+  constructor(private _odsDataService: OdsDataService, private fb: FormBuilder) {}
 
   ngOnInit() {
     this._odsDataService.ods.takeUntil(this.myUnsubscribe).subscribe(
@@ -55,10 +49,16 @@ export class OdsComponent implements OnInit {
   }
 
   openNewOd() {
+    this.od.reset();
     $('.ui.modal.makeod').modal('show');
   }
   openEditOd(od) {
+    this.editingOdFormGroup.reset();
     this.editingOd = od;
+    this.editingOdFormGroup.setValue({
+      nr: this.editingOd.nr,
+      beschrijving: this.editingOd.beschrijving
+    });
     $('.ui.modal.editod').modal('show');
   }
   openRemoveOd(od) {
@@ -75,13 +75,12 @@ export class OdsComponent implements OnInit {
   }
   editOd() {
     if (this.editingOdFormGroup.valid) {
-      this.editingOd.beschrijving = _.isNull(this.editingOdFormGroup.value.beschrijving) ? this.editingOd.beschrijving : this.editingOdFormGroup.value.beschrijving;
-      this.editingOd.nr = _.isNull(this.editingOdFormGroup.value.nr) ? this.editingOd.nr : this.editingOdFormGroup.value.nr;
+      this.editingOd.beschrijving = this.editingOdFormGroup.value.beschrijving;
+      this.editingOd.nr = this.editingOdFormGroup.value.nr;
       this._ods[_.findIndex(this._ods, {_id : this.editingOd.id})] = this.editingOd;
       this._odsDataService.editOd(this.editingOd).subscribe();
       this.editingOdFormGroup.reset();
     }
-
   }
   removeOd() {
     _.remove(this._ods, {_id: this.removingOd._id});

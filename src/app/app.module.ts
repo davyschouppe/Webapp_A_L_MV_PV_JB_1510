@@ -20,6 +20,7 @@ import { LeerlingenDetailTrackingComponent } from './leerlingen-detail-tracking/
 import {HttpModule} from '@angular/http';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
+import { OrderByPipe } from './custom_pipes/order-by.pipe';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -52,7 +53,8 @@ const appRoutes: Routes = [
     LeerlingenDetailComponent,
     LeerlingenDetailTrackingComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    OrderByPipe
   ],
   imports: [
     BrowserModule,

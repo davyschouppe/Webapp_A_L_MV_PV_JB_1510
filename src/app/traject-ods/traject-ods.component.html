@@ -6,7 +6,7 @@
   </div>
   <div class="ui segment trajectods">
     <div class="ui middle aligned divided list">
-      <div class="item" *ngFor="let od of traject?.ods">
+      <div class="item" *ngFor="let od of traject?.ods | orderBy">
         <div class="right floated content">
           <div class="ui red icon compact button" (click)="openRemoveOd(od)">
             <i class="minus outline icon"></i>
@@ -26,7 +26,7 @@
     Voeg een ontwikkelingsdoel toe
   </div>
   <div class="content trajectods">
-    <div class="ui middle aligned divided list" *ngFor="let od of _ods">
+    <div class="ui middle aligned divided list" *ngFor="let od of _ods | orderBy">
       <div class="item">
         <div class="right floated content">
           <div class="ui green icon compact button" (click)="addOd(od)">

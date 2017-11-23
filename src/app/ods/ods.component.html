@@ -6,7 +6,7 @@
   </div>
   <div class="ui segment odsscroll">
     <div class="ui middle aligned divided list">
-      <div class="item odsscrollrow" *ngFor="let od of ods">
+      <div class="item odsscrollrow" *ngFor="let od of ods | orderBy">
         <div class="right floated content">
           <div class="ui icon compact button" (click)="openEditOd(od)">
             <i class="edit outline icon"></i>
@@ -75,7 +75,7 @@
       <div class="fields">
         <div class="three wide field">
           <label>Nr</label>
-          <input type="text" name="nr" placeholder="Nr" formControlName='nr' value={{editingOd?.nr}}>
+          <input type="text" name="nr" placeholder="Nr" formControlName='nr'>
           <div *ngIf='editingOdFormGroup.get("nr").errors?.required && editingOdFormGroup.get("nr").touched' class='ui pointing red basic label'>
             Dit veld is verplicht.
           </div>
@@ -85,7 +85,7 @@
         </div>
         <div class="thirteen wide field">
           <label>Beschrijving</label>
-          <input type="text" name="beschrijving" placeholder="Beschrijving" formControlName='beschrijving' value={{editingOd?.beschrijving}}>
+          <input type="text" name="beschrijving" placeholder="Beschrijving" formControlName='beschrijving'>
           <div *ngIf='editingOdFormGroup.get("beschrijving").errors?.required && editingOdFormGroup.get("beschrijving").touched' class='ui pointing red basic label'>
             Dit veld is verplicht.
           </div>

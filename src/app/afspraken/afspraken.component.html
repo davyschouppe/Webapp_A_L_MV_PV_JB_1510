@@ -71,7 +71,7 @@
     <div class="ui form">
       <div class="field">
         <label>Icoon</label>
-        <input type="text" name="icon" placeholder="Icon URL" formControlName='icon' value={{editingAfspraak?.icon}}>
+        <input type="text" name="icon" placeholder="Icon URL" formControlName='icon'>
         <div *ngIf='editingAfspraakFormGroup.get("icon").errors?.required && editingAfspraakFormGroup.get("icon").touched' class='ui pointing red basic label'>
           Dit veld is verplicht.
         </div>
@@ -81,7 +81,7 @@
       </div>
       <div class="field">
         <label>Beschrijving</label>
-        <input type="text" name="beschrijving" placeholder="Beschrijving" formControlName='beschrijving' value={{editingAfspraak?.beschrijving}}>
+        <input type="text" name="beschrijving" placeholder="Beschrijving" formControlName='beschrijving'>
         <div *ngIf='editingAfspraakFormGroup.get("beschrijving").errors?.required && editingAfspraakFormGroup.get("beschrijving").touched' class='ui pointing red basic label'>
           Dit veld is verplicht.
         </div>
