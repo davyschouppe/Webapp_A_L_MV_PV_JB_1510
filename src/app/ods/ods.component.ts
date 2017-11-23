@@ -67,16 +67,20 @@ export class OdsComponent implements OnInit {
   }
 
   addOd() {
-    const od = new Od(this.od.value.nr, this.od.value.beschrijving);
-    this._odsDataService.addOd(od.toJSON()).subscribe(item => this._ods.push(item));
-    this.od.reset();
+    if (this.od.valid) {
+      const od = new Od(this.od.value.nr, this.od.value.beschrijving);
+      this._odsDataService.addOd(od.toJSON()).subscribe(item => this._ods.push(item));
+      this.od.reset();
+    }
   }
   editOd() {
-    this.editingOd.beschrijving = _.isNull(this.editingOdFormGroup.value.beschrijving) ? this.editingOd.beschrijving : this.editingOdFormGroup.value.beschrijving;
-    this.editingOd.nr = _.isNull(this.editingOdFormGroup.value.nr) ? this.editingOd.nr : this.editingOdFormGroup.value.nr;
-    this._ods[_.findIndex(this._ods, {_id : this.editingOd.id})] = this.editingOd;
-    this._odsDataService.editOd(this.editingOd).subscribe();
-    this.editingOdFormGroup.reset();
+    if (this.editingOdFormGroup.valid) {
+      this.editingOd.beschrijving = _.isNull(this.editingOdFormGroup.value.beschrijving) ? this.editingOd.beschrijving : this.editingOdFormGroup.value.beschrijving;
+      this.editingOd.nr = _.isNull(this.editingOdFormGroup.value.nr) ? this.editingOd.nr : this.editingOdFormGroup.value.nr;
+      this._ods[_.findIndex(this._ods, {_id : this.editingOd.id})] = this.editingOd;
+      this._odsDataService.editOd(this.editingOd).subscribe();
+      this.editingOdFormGroup.reset();
+    }
 
   }
   removeOd() {

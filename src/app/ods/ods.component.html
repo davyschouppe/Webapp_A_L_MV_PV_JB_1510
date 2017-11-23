@@ -34,10 +34,22 @@
         <div class="three wide field">
           <label>Nr</label>
           <input type="text" name="nr" formControlName='nr' placeholder="Nr">
+          <div *ngIf='od.get("nr").errors?.required && od.get("nr").touched' class='ui pointing red basic label'>
+            Dit veld is verplicht.
+          </div>
+          <div *ngIf='od.get("nr").errors?.minlength && od.get("nr").touched' class='ui pointing red basic label'>
+            Dit veld moet minimum {{od.get("nr").errors?.minlength.requiredLength}} tekens lang zijn.
+          </div>
         </div>
         <div class="thirteen wide field">
           <label>Beschrijving</label>
           <input type="text" name="beschrijving" formControlName='beschrijving' placeholder="Beschrijving">
+          <div *ngIf='od.get("beschrijving").errors?.required && od.get("beschrijving").touched' class='ui pointing red basic label'>
+            Dit veld is verplicht.
+          </div>
+          <div *ngIf='od.get("beschrijving").errors?.minlength && od.get("beschrijving").touched' class='ui pointing red basic label'>
+            Dit veld moet minimum {{od.get("beschrijving").errors?.minlength.requiredLength}} tekens lang zijn.
+          </div>
         </div>
       </div>
     </div>
@@ -64,10 +76,22 @@
         <div class="three wide field">
           <label>Nr</label>
           <input type="text" name="nr" placeholder="Nr" formControlName='nr' value={{editingOd?.nr}}>
+          <div *ngIf='editingOdFormGroup.get("nr").errors?.required && editingOdFormGroup.get("nr").touched' class='ui pointing red basic label'>
+            Dit veld is verplicht.
+          </div>
+          <div *ngIf='editingOdFormGroup.get("nr").errors?.minlength && editingOdFormGroup.get("nr").touched' class='ui pointing red basic label'>
+            Dit veld moet minimum {{editingOdFormGroup.get("nr").errors?.minlength.requiredLength}} tekens lang zijn.
+          </div>
         </div>
         <div class="thirteen wide field">
           <label>Beschrijving</label>
           <input type="text" name="beschrijving" placeholder="Beschrijving" formControlName='beschrijving' value={{editingOd?.beschrijving}}>
+          <div *ngIf='editingOdFormGroup.get("beschrijving").errors?.required && editingOdFormGroup.get("beschrijving").touched' class='ui pointing red basic label'>
+            Dit veld is verplicht.
+          </div>
+          <div *ngIf='editingOdFormGroup.get("beschrijving").errors?.minlength && editingOdFormGroup.get("beschrijving").touched' class='ui pointing red basic label'>
+            Dit veld moet minimum {{editingOdFormGroup.get("beschrijving").errors?.minlength.requiredLength}} tekens lang zijn.
+          </div>
         </div>
       </div>
     </div>
