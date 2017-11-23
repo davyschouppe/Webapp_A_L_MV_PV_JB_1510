@@ -5,7 +5,8 @@ export class Afspraak {
   private _beschrijving: string;
 
   static fromJSON(json): Afspraak {
-    const rec = new Afspraak(json.icon, json.beschrijving, json._id);
+    const rec = new Afspraak(json.icon, json.beschrijving);
+    rec._id = json._id;
     return rec;
   }
 

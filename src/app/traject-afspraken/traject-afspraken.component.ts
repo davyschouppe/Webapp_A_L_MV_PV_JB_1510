@@ -18,7 +18,7 @@ export class TrajectAfsprakenComponent implements OnInit {
   @Input() traject;
   private _afspraken: Afspraak[];
   private myUnsubscribe: Subject<boolean> = new Subject<boolean>();
-  removing: Afspraak;
+  private removing;
 
   constructor(private _trajectenDataService: TrajectenDataService,
     private _afsprakenDataService: AfsprakenDataServiceService) { }
@@ -30,7 +30,7 @@ export class TrajectAfsprakenComponent implements OnInit {
     this.loadRules();
     $('.ui.modal.addrule').modal('show');
   }
-  openRemoveRule(afspraak: Afspraak) {
+  openRemoveRule(afspraak) {
     this.removing = afspraak;
     $('.ui.modal.removerule').modal('show');
   }
@@ -40,8 +40,8 @@ export class TrajectAfsprakenComponent implements OnInit {
     _.remove(this._afspraken, {id: afspraak.id});
   }
   removeRule() {
-    //_.remove(this.traject.afspraken, {_id: this.removing.id});
-    //this._trajectenDataService.deleteAfspraak(this.removing.id, this.traject.id).subscribe();
+    _.remove(this.traject.afspraken, {_id: this.removing._id});
+    this._trajectenDataService.deleteAfspraak(this.traject.id, this.removing._id).subscribe();
   }
 
   loadRules() {
