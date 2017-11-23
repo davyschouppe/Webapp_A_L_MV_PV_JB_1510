@@ -18,15 +18,19 @@ import { LeerlingenInfoDetailComponent } from './leerlingen-detail-info/leerling
 import { LeerlingenDetailComponent } from './leerlingen-detail/leerlingen-detail.component';
 import { LeerlingenDetailTrackingComponent } from './leerlingen-detail-tracking/leerlingen-detail-tracking.component';
 import {HttpModule} from '@angular/http';
+import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
 
 const appRoutes: Routes = [
-  { path: 'locatie/:trajectid/:locatieid', component: TrajectLocatiesDetailComponent},
-  { path: 'traject/:id', component: TrajectComponent},
-  { path: 'trajecten', component: TrajectenComponent},
-  { path: 'leerling', component: LeerlingenDetailComponent },
-  { path: 'leerlingen', component: LeerlingenComponent },
-  { path: 'ods', component: OdsComponent},
-  { path: 'afspraken', component: AfsprakenComponent},
+  { path: 'login', component: LoginComponent },
+  { path: 'logout', component: LogoutComponent },
+  { path: 'locatie/:trajectid/:locatieid', /*canActivate: [ AuthGuardService ],*/ component: TrajectLocatiesDetailComponent},
+  { path: 'traject/:id',/*canActivate: [ AuthGuardService ],*/ component: TrajectComponent},
+  { path: 'trajecten',/*canActivate: [ AuthGuardService ],*/ component: TrajectenComponent},
+  { path: 'leerling',/*canActivate: [ AuthGuardService ],*/ component: LeerlingenDetailComponent },
+  { path: 'leerlingen',/*canActivate: [ AuthGuardService ],*/ component: LeerlingenComponent },
+  { path: 'ods',/*canActivate: [ AuthGuardService ],*/ component: OdsComponent},
+  { path: 'afspraken',/*canActivate: [ AuthGuardService ],*/ component: AfsprakenComponent},
   { path: '', redirectTo: 'trajecten', pathMatch: 'full'},
   { path: '**', redirectTo: 'trajecten', pathMatch: 'full'}
 ]
@@ -46,7 +50,9 @@ const appRoutes: Routes = [
     LeerlingenComponent,
     LeerlingenInfoDetailComponent,
     LeerlingenDetailComponent,
-    LeerlingenDetailTrackingComponent
+    LeerlingenDetailTrackingComponent,
+    LoginComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

@@ -18,7 +18,7 @@ export class TrajectOdsComponent implements OnInit {
   @Input() traject;
   private _ods: Od[];
   private myUnsubscribe: Subject<boolean> = new Subject<boolean>();
-  removing: Od;
+  private removing;
 
   constructor(private _trajectenDataService: TrajectenDataService,
     private _odsDataService: OdsDataService) { }
@@ -40,8 +40,8 @@ export class TrajectOdsComponent implements OnInit {
     _.remove(this._ods, {id: od.id});
   }
   removeOd() {
-    //
-    //
+    _.remove(this.traject.ods, {_id: this.removing._id});
+    this._trajectenDataService.deleteOd(this.traject.id, this.removing._id).subscribe();
   }
 
   loadOds() {

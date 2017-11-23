@@ -1,0 +1,14 @@
+<form [formGroup]='user' (ngSubmit)='onSubmit()' class="ui clearing form segment">
+  <h3 class="ui header">Login</h3>
+  <div class="field">
+    <label for="username">Naam:</label>
+    <input type="text" id="username" formControlName='username'>
+  </div>
+  <div class="field">
+    <label for="password">Wachtwoord:</label>
+    <input type="password" id="password" formControlName='password'>
+  </div>
+  <div *ngIf='errorMsg' class='ui pointing red basic label'>{{errorMsg}}</div>
+  <button type='submit' [disabled]='!user.valid' class="ui positive button">log in</button>
+  <!--<a class='item' routerLink="/register">register</a>-->
+</form>

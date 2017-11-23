@@ -37,6 +37,14 @@ export class TrajectenDataService {
     console.log(trajectid + "/" + locatieid + "/" + afbeeldingid);
     return this.http.delete(`${this._appUrl}/trajecten/${trajectid}/locaties/${locatieid}/afbeeldingen/${afbeeldingid}`);
   }
+  deleteAfspraak(trajectid:string, afspraakid: string) {
+    console.log(trajectid + "/" + afspraakid);
+    return this.http.delete(`${this._appUrl}/trajecten/${trajectid}/afspraken/${afspraakid}`);
+  }
+  deleteOd(trajectid:string, odid: string) {
+    console.log(trajectid + "/" + odid);
+    return this.http.delete(`${this._appUrl}/trajecten/${trajectid}/ontwikkelingsdoelen/${odid}`);
+  }
 
   addTraject(traject): Observable<Traject> {
     return this.http.post(`${this._appUrl}/trajecten`, traject)
@@ -46,6 +54,10 @@ export class TrajectenDataService {
     return this.http.post(`${this._appUrl}/trajecten/${id}/locaties`, locatie)
       .map(res => res.json()).map(item => Locatie.fromJSON(item));
   }
+  addAfbeelding(trajectid: string, locatieid: string, afbeelding): Observable<Afbeelding> {
+    return this.http.post(`${this._appUrl}/trajecten/${trajectid}/locaties/${locatieid}/afbeeldingen`, afbeelding)
+      .map(res => res.json()).map(item => Afbeelding.fromJSON(item));
+  }
   addAfspraak(afspraak, id: string): Observable<Afspraak> {
     return this.http.post(`${this._appUrl}/trajecten/${id}/afspraken`, afspraak)
       .map(res => res.json()).map(item => Afspraak.fromJSON(item));
@@ -53,9 +65,5 @@ export class TrajectenDataService {
   addOd(od, id: string): Observable<Od> {
     return this.http.post(`${this._appUrl}/trajecten/${id}/ontwikkelingsdoelen`, od)
       .map(res => res.json()).map(item => Od.fromJSON(item));
-  }
-  addAfbeelding(trajectid: string, locatieid: string, afbeelding): Observable<Afbeelding> {
-    return this.http.post(`${this._appUrl}/trajecten/${trajectid}/locaties/${locatieid}/afbeeldingen`, afbeelding)
-      .map(res => res.json()).map(item => Afbeelding.fromJSON(item));
   }
 }
