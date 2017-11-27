@@ -13,15 +13,17 @@ import * as _ from 'lodash';
   providers: [AfsprakenDataServiceService]
 })
 export class AfsprakenComponent implements OnInit {
-  private _afspraken: Afspraak[];
-  private myUnsubscribe: Subject<boolean> = new Subject<boolean>();
-  //private afspraken = new Array<Object>();
+  _afspraken: Afspraak[];
+  myUnsubscribe: Subject<boolean> = new Subject<boolean>();
+  // afspraken = new Array<Object>();
   removingAfspraak;
   editingAfspraak;
-  private afspraak: FormGroup;
-  private editingAfspraakFormGroup: FormGroup;
+  afspraak: FormGroup;
+  editingAfspraakFormGroup: FormGroup;
+  _afsprakenDataService: AfsprakenDataServiceService;
+  fb: FormBuilder;
 
-  constructor(private _afsprakenDataService: AfsprakenDataServiceService, private fb: FormBuilder) {
+  constructor(_afsprakenDataService: AfsprakenDataServiceService, fb: FormBuilder) {
     // this.afspraken = [{ 'icon': '../../assets/images/trap.png', 'beschrijving': 'We lopen rechts op de trap' },
     // { 'icon': '../../assets/images/stappen-per-2.jpg', 'beschrijving': 'We stappen per 2' },
     // { 'icon': '../../assets/images/deur-kloppen.png', 'beschrijving': 'We kloppen op de deur voor we binnengaan' },

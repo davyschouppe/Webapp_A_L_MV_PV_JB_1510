@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./leerlingen.component.css']
 })
 export class LeerlingenComponent implements OnInit {
-  private leerlingen = new Array<Object>();
+  leerlingen = new Array<Object>();
 
   constructor() {
     this.leerlingen = [{'fname': 'Jef', 'lname': 'Braem'},

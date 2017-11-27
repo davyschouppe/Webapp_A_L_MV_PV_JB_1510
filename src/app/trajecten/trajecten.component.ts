@@ -18,12 +18,14 @@ import * as _ from 'lodash';
   providers: [TrajectenDataService]
 })
 export class TrajectenComponent implements OnInit {
-  private _trajecten: Traject[];
-  private myUnsubscribe: Subject<boolean> = new Subject<boolean>();
-  private traject: FormGroup;
+  _trajecten: Traject[];
+  myUnsubscribe: Subject<boolean> = new Subject<boolean>();
+  traject: FormGroup;
+  _trajectenDataService: TrajectenDataService;
+  fb: FormBuilder;
 
-  constructor(private _trajectenDataService: TrajectenDataService,
-    private fb: FormBuilder) { }
+  constructor(_trajectenDataService: TrajectenDataService,
+    fb: FormBuilder) { }
 
   ngOnInit() {
     this._trajectenDataService.trajecten.takeUntil(this.myUnsubscribe).subscribe(

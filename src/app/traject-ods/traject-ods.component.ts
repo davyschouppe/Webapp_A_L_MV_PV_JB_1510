@@ -16,12 +16,14 @@ declare var $: any;
 })
 export class TrajectOdsComponent implements OnInit {
   @Input() traject;
-  private _ods: Od[];
-  private myUnsubscribe: Subject<boolean> = new Subject<boolean>();
-  private removing;
+  _ods: Od[];
+  myUnsubscribe: Subject<boolean> = new Subject<boolean>();
+  removing;
+  _trajectenDataService: TrajectenDataService;
+  _odsDataService: OdsDataService;
 
-  constructor(private _trajectenDataService: TrajectenDataService,
-    private _odsDataService: OdsDataService) { }
+  constructor(_trajectenDataService: TrajectenDataService,
+    _odsDataService: OdsDataService) { }
 
   ngOnInit() {
   }

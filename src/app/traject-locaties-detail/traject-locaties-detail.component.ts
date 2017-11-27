@@ -15,14 +15,17 @@ import * as _ from 'lodash';
   providers: [TrajectenDataService]
 })
 export class TrajectLocatiesDetailComponent implements OnInit {
-  private _traject: Traject;
-  private _locatie: Locatie;
-  private afbeelding: FormGroup;
-  private removing: Afbeelding;
+  _traject: Traject;
+  _locatie: Locatie;
+  afbeelding: FormGroup;
+  removing: Afbeelding;
+  route: ActivatedRoute;
+  _trajectenDataService: TrajectenDataService;
+  fb: FormBuilder;
 
-  constructor(private route: ActivatedRoute,
-    private _trajectenDataService: TrajectenDataService,
-    private fb: FormBuilder) { }
+  constructor(route: ActivatedRoute,
+    _trajectenDataService: TrajectenDataService,
+    fb: FormBuilder) { }
 
   ngOnInit() {
     const trajectid = this.route.snapshot.paramMap.get('trajectid');
@@ -70,7 +73,7 @@ export class TrajectLocatiesDetailComponent implements OnInit {
     }
   }
   // Return het file object.
-  private prepareSave(): any {
+  prepareSave(): any {
     let input = new FormData();
     input.append('imgLocatie', this.afbeelding.get('afbeelding').value);
     console.log(input);
