@@ -19,13 +19,10 @@ export class TrajectLocatiesDetailComponent implements OnInit {
   _locatie: Locatie;
   afbeelding: FormGroup;
   removing: Afbeelding;
-  route: ActivatedRoute;
-  _trajectenDataService: TrajectenDataService;
-  fb: FormBuilder;
 
-  constructor(route: ActivatedRoute,
-    _trajectenDataService: TrajectenDataService,
-    fb: FormBuilder) { }
+  constructor(private route: ActivatedRoute,
+    private _trajectenDataService: TrajectenDataService,
+    private fb: FormBuilder) { }
 
   ngOnInit() {
     const trajectid = this.route.snapshot.paramMap.get('trajectid');
@@ -76,7 +73,6 @@ export class TrajectLocatiesDetailComponent implements OnInit {
   prepareSave(): any {
     let input = new FormData();
     input.append('imgLocatie', this.afbeelding.get('afbeelding').value);
-    console.log(input);
     return input;
   }
 

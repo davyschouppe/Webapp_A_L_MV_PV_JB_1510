@@ -22,6 +22,10 @@ import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { OrderByPipe } from './custom_pipes/order-by.pipe';
 
+import { AfsprakenDataServiceService } from './afspraken-data-service.service';
+import { OdsDataService } from './ods-data.service';
+import { TrajectenDataService } from './trajecten-data.service';
+
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
@@ -62,7 +66,11 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [
+    AfsprakenDataServiceService,
+    OdsDataService,
+    TrajectenDataService
+  ],
   bootstrap: [AppComponent]
 })
 

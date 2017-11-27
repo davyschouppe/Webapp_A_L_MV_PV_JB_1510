@@ -19,11 +19,9 @@ export class TrajectAfsprakenComponent implements OnInit {
   _afspraken: Afspraak[];
   myUnsubscribe: Subject<boolean> = new Subject<boolean>();
   removing;
-  _trajectenDataService: TrajectenDataService;
-  _afsprakenDataService: AfsprakenDataServiceService;
 
-  constructor(_trajectenDataService: TrajectenDataService,
-    _afsprakenDataService: AfsprakenDataServiceService) { }
+  constructor(private _trajectenDataService: TrajectenDataService,
+    private _afsprakenDataService: AfsprakenDataServiceService) { }
 
   ngOnInit() {
   }

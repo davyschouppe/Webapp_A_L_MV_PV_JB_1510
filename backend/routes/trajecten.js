@@ -162,7 +162,7 @@ router.put('/trajecten/:traject/locaties/:locatie', auth, function(req, res) {
     });
 });
 
-router.post('/trajecten/:traject/locaties/:locatie/afbeeldingen', function (req, res, next) {
+router.post('/trajecten/:traject/locaties/:locatie/afbeeldingen', auth, function (req, res, next) {
     upload(req, res, function(err) {
         if(err) {
             res.json(err);

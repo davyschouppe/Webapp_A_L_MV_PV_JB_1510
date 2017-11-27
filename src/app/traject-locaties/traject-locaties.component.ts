@@ -19,13 +19,10 @@ export class TrajectLocatiesComponent implements OnInit {
   myUnsubscribe: Subject<boolean> = new Subject<boolean>();
   locatie: FormGroup;
   removing: Locatie;
-  _trajectenDataService: TrajectenDataService;
-  fb: FormBuilder;
-  router: Router;
 
-  constructor(_trajectenDataService: TrajectenDataService,
-    fb: FormBuilder,
-    router: Router) { }
+  constructor(private _trajectenDataService: TrajectenDataService,
+    private fb: FormBuilder,
+    private router: Router) { }
 
   ngOnInit() {
     this.locatie = this.fb.group({

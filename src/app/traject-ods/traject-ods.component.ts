@@ -19,11 +19,9 @@ export class TrajectOdsComponent implements OnInit {
   _ods: Od[];
   myUnsubscribe: Subject<boolean> = new Subject<boolean>();
   removing;
-  _trajectenDataService: TrajectenDataService;
-  _odsDataService: OdsDataService;
 
-  constructor(_trajectenDataService: TrajectenDataService,
-    _odsDataService: OdsDataService) { }
+  constructor(private _trajectenDataService: TrajectenDataService,
+    private _odsDataService: OdsDataService) { }
 
   ngOnInit() {
   }

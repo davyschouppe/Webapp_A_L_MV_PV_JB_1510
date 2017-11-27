@@ -23,10 +23,9 @@ export class OdsComponent implements OnInit {
   editingOd;
   od: FormGroup;
   editingOdFormGroup: FormGroup;
-  _odsDataService: OdsDataService;
-  fb: FormBuilder;
 
-  constructor(_odsDataService: OdsDataService, fb: FormBuilder) {}
+  constructor(private _odsDataService: OdsDataService,
+    private fb: FormBuilder) {}
 
   ngOnInit() {
     this._odsDataService.ods.takeUntil(this.myUnsubscribe).subscribe(

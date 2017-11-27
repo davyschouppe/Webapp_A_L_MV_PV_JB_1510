@@ -26,23 +26,23 @@ export class TrajectenDataService {
   }
 
   deleteTraject(id: string) {
-    console.log(id);
+    // console.log(id);
     return this.http.delete(`${this._appUrl}/trajecten/${id}`);
   }
   deleteLocatie(lid:string, tid: string) {
-    console.log(tid + "/" + lid);
+    // console.log(tid + "/" + lid);
     return this.http.delete(`${this._appUrl}/trajecten/${tid}/locaties/${lid}`);
   }
   deleteAfbeelding(trajectid:string, locatieid: string, afbeeldingid: string) {
-    console.log(trajectid + "/" + locatieid + "/" + afbeeldingid);
+    // console.log(trajectid + "/" + locatieid + "/" + afbeeldingid);
     return this.http.delete(`${this._appUrl}/trajecten/${trajectid}/locaties/${locatieid}/afbeeldingen/${afbeeldingid}`);
   }
   deleteAfspraak(trajectid:string, afspraakid: string) {
-    console.log(trajectid + "/" + afspraakid);
+    // console.log(trajectid + "/" + afspraakid);
     return this.http.delete(`${this._appUrl}/trajecten/${trajectid}/afspraken/${afspraakid}`);
   }
   deleteOd(trajectid:string, odid: string) {
-    console.log(trajectid + "/" + odid);
+    // console.log(trajectid + "/" + odid);
     return this.http.delete(`${this._appUrl}/trajecten/${trajectid}/ontwikkelingsdoelen/${odid}`);
   }
 
