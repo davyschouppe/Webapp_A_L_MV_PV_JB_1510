@@ -10,10 +10,12 @@ import { TrajectenDataService } from '../trajecten-data.service';
   providers: [TrajectenDataService]
 })
 export class TrajectComponent implements OnInit {
-  private _traject: Traject;
+  _traject: Traject;
+  route: ActivatedRoute;
+  trajectDataService: TrajectenDataService;
 
-  constructor(private route: ActivatedRoute,
-    private trajectDataService: TrajectenDataService) {}
+  constructor(route: ActivatedRoute,
+    trajectDataService: TrajectenDataService) {}
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
