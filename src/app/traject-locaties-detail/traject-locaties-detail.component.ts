@@ -29,7 +29,7 @@ export class TrajectLocatiesDetailComponent implements OnInit {
     const locatieid = this.route.snapshot.paramMap.get('locatieid');
     this._trajectenDataService.getTraject(trajectid).subscribe(
       item => this._traject = item,
-      error => console.log("Error: ", error),
+      error => console.log('Error: ', error),
       () => {
         for (var i = 0; i < this._traject.locaties.length; i++) {
           if (this._traject.locaties[i].id == locatieid) {
@@ -44,17 +44,43 @@ export class TrajectLocatiesDetailComponent implements OnInit {
     });
 
     this.afbeelding = this.fb.group({
-      link: ['', [Validators.required, Validators.minLength(2)]]
+      afbeelding: [null, Validators.required]
     });
   }
 
   newAfbeelding() {
-    if(this.afbeelding.valid) {
+    // OUDE METHODE:
+    /*if (this.afbeelding.valid) {
       const afbeelding = new Afbeelding(this.afbeelding.value.link);
       this._trajectenDataService.addAfbeelding(this._traject.id, this._locatie.id, afbeelding.toJSON()).subscribe(item => this._locatie.afbeeldingen.push(item));
       $('.ui.modal.makeafbeelding').modal('hide');
+    }*/
+
+
+    // NIEUWE METHODE:
+    if (this.afbeelding.valid) {
+      const formModel = this.prepareSave();
+      this._trajectenDataService.uploadAfbeelding(this._traject.id, this._locatie.id, formModel)
+        .subscribe(item => this._locatie.afbeeldingen.push(item));
+      // In a real-world app you'd have a http request / service call here like
+      // this.http.post('apiUrl', formModel)
     }
   }
+  // Als de gebruiker de file aanpast zal deze functie opgeroepen worden.
+  // De waarde van afbeelding zal dan verandert worden naar de nieuwe afbeelding.
+  onFileChange() {
+    if(event.target.files.length > 0) {
+      let file = event.target.files[0];
+      this.afbeelding.get('afbeelding').setValue(file);
+    }
+  }
+  // Maakt FormData object aan en return dit.
+  private prepareSave(): any {
+    let input = new FormData();
+    input.append('afbeelding', this.afbeelding.get('afbeelding').value);
+    return input;
+  }
+
   openNewAfbeelding() {
     this.afbeelding.reset();
     $('.ui.modal.makeafbeelding').modal('show');
@@ -73,8 +99,6 @@ export class TrajectLocatiesDetailComponent implements OnInit {
   }
 
   setDimmer() {
-    $('.special.card .image').dimmer({
-      on: 'hover'
-    });
+    $('.special.card .image').dimmer({on: 'hover'});
   }
 }
