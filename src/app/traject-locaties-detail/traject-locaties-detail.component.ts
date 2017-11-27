@@ -71,8 +71,9 @@ export class TrajectLocatiesDetailComponent implements OnInit {
   }
   // Return het file object.
   private prepareSave(): any {
-    let input;
-    input = this.afbeelding.get('afbeelding').value;
+    let input = new FormData();
+    input.append('imgLocatie', this.afbeelding.get('afbeelding').value);
+    console.log(input);
     return input;
   }
 
