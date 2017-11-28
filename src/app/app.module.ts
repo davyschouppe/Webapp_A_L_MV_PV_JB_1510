@@ -25,17 +25,19 @@ import { OrderByPipe } from './custom_pipes/order-by.pipe';
 import { AfsprakenDataServiceService } from './afspraken-data-service.service';
 import { OdsDataService } from './ods-data.service';
 import { TrajectenDataService } from './trajecten-data.service';
+import { AuthenticationService } from './authentication.service';
+import { AuthGuardService } from './auth-guard.service';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
-  { path: 'locatie/:trajectid/:locatieid', /*canActivate: [ AuthGuardService ],*/ component: TrajectLocatiesDetailComponent},
-  { path: 'traject/:id',/*canActivate: [ AuthGuardService ],*/ component: TrajectComponent},
-  { path: 'trajecten',/*canActivate: [ AuthGuardService ],*/ component: TrajectenComponent},
-  { path: 'leerling',/*canActivate: [ AuthGuardService ],*/ component: LeerlingenDetailComponent },
-  { path: 'leerlingen',/*canActivate: [ AuthGuardService ],*/ component: LeerlingenComponent },
-  { path: 'ods',/*canActivate: [ AuthGuardService ],*/ component: OdsComponent},
-  { path: 'afspraken',/*canActivate: [ AuthGuardService ],*/ component: AfsprakenComponent},
+  { path: 'locatie/:trajectid/:locatieid', canActivate: [ AuthGuardService ], component: TrajectLocatiesDetailComponent},
+  { path: 'traject/:id', canActivate: [ AuthGuardService ], component: TrajectComponent},
+  { path: 'trajecten', canActivate: [ AuthGuardService ], component: TrajectenComponent},
+  { path: 'leerling', canActivate: [ AuthGuardService ], component: LeerlingenDetailComponent },
+  { path: 'leerlingen', canActivate: [ AuthGuardService ], component: LeerlingenComponent },
+  { path: 'ods', canActivate: [ AuthGuardService ], component: OdsComponent},
+  { path: 'afspraken', canActivate: [ AuthGuardService ], component: AfsprakenComponent},
   { path: '', redirectTo: 'trajecten', pathMatch: 'full'},
   { path: '**', redirectTo: 'trajecten', pathMatch: 'full'}
 ]
@@ -69,7 +71,9 @@ const appRoutes: Routes = [
   providers: [
     AfsprakenDataServiceService,
     OdsDataService,
-    TrajectenDataService
+    TrajectenDataService,
+    AuthenticationService,
+    AuthGuardService
   ],
   bootstrap: [AppComponent]
 })

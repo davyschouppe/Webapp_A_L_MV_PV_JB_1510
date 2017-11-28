@@ -162,7 +162,7 @@ router.put('/trajecten/:traject/locaties/:locatie', auth, function(req, res) {
     });
 });
 
-router.post('/trajecten/:traject/locaties/:locatie/afbeeldingen', function (req, res, next) {
+router.post('/trajecten/:traject/locaties/:locatie/afbeeldingen', auth, function (req, res, next) {
     upload(req, res, function(err) {
         if(err) {
             res.json(err);
@@ -207,7 +207,7 @@ router.param('afbeelding', function(req, res, next, id) {
     });
 });
 
-router.delete('/trajecten/:traject/locaties/:locatie/afbeeldingen/:afbeelding', function(req, res) {
+router.delete('/trajecten/:traject/locaties/:locatie/afbeeldingen/:afbeelding', auth, function(req, res) {
     req.afbeelding.remove(function(err) {
         if (err) { return next(err); }
         res.json("afbeelding is verwijderd");
