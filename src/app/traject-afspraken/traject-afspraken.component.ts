@@ -16,9 +16,9 @@ declare var $: any;
 })
 export class TrajectAfsprakenComponent implements OnInit {
   @Input() traject;
-  private _afspraken: Afspraak[];
-  private myUnsubscribe: Subject<boolean> = new Subject<boolean>();
-  private removing;
+  _afspraken: Afspraak[];
+  myUnsubscribe: Subject<boolean> = new Subject<boolean>();
+  removing;
 
   constructor(private _trajectenDataService: TrajectenDataService,
     private _afsprakenDataService: AfsprakenDataServiceService) { }

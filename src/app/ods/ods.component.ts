@@ -16,15 +16,16 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   providers: [OdsDataService]
 })
 export class OdsComponent implements OnInit {
-  // private ods = new Array<Object>();
-  private _ods: Od[];
-  private myUnsubscribe: Subject<boolean> = new Subject<boolean>();
+  // ods = new Array<Object>();
+  _ods: Od[];
+  myUnsubscribe: Subject<boolean> = new Subject<boolean>();
   removingOd;
   editingOd;
-  private od: FormGroup;
-  private editingOdFormGroup: FormGroup;
+  od: FormGroup;
+  editingOdFormGroup: FormGroup;
 
-  constructor(private _odsDataService: OdsDataService, private fb: FormBuilder) {}
+  constructor(private _odsDataService: OdsDataService,
+    private fb: FormBuilder) {}
 
   ngOnInit() {
     this._odsDataService.ods.takeUntil(this.myUnsubscribe).subscribe(

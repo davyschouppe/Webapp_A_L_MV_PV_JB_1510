@@ -10,7 +10,7 @@ import { TrajectenDataService } from '../trajecten-data.service';
   providers: [TrajectenDataService]
 })
 export class TrajectComponent implements OnInit {
-  private _traject: Traject;
+  _traject: Traject;
 
   constructor(private route: ActivatedRoute,
     private trajectDataService: TrajectenDataService) {}

@@ -16,8 +16,8 @@ declare var $: any;
 })
 export class TrajectLocatiesComponent implements OnInit {
   @Input() traject;
-  private myUnsubscribe: Subject<boolean> = new Subject<boolean>();
-  private locatie: FormGroup;
+  myUnsubscribe: Subject<boolean> = new Subject<boolean>();
+  locatie: FormGroup;
   removing: Locatie;
 
   constructor(private _trajectenDataService: TrajectenDataService,

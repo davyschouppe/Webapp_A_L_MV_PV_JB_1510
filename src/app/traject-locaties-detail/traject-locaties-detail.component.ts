@@ -15,10 +15,11 @@ import * as _ from 'lodash';
   providers: [TrajectenDataService]
 })
 export class TrajectLocatiesDetailComponent implements OnInit {
-  private _traject: Traject;
-  private _locatie: Locatie;
-  private afbeelding: FormGroup;
-  private removing: Afbeelding;
+  _traject: Traject;
+  _locatie: Locatie;
+  afbeelding: FormGroup;
+  removing: Afbeelding;
+  input = new FormData();
 
   constructor(private route: ActivatedRoute,
     private _trajectenDataService: TrajectenDataService,
@@ -57,9 +58,11 @@ export class TrajectLocatiesDetailComponent implements OnInit {
     }*/
 
     // NIEUWE METHODE:
-    const image = this.prepareSave();
+    var image = this.prepareSave();
     this._trajectenDataService.uploadAfbeelding(this._traject.id, this._locatie.id, image)
       .subscribe(item => this._locatie.afbeeldingen.push(item));
+    this.afbeelding.reset();
+    this.closeNewAfbeelding();
   }
   // Als de gebruiker de file aanpast zal deze functie opgeroepen worden.
   // De waarde van afbeelding zal dan verandert worden naar de nieuwe afbeelding.
@@ -70,10 +73,9 @@ export class TrajectLocatiesDetailComponent implements OnInit {
     }
   }
   // Return het file object.
-  private prepareSave(): any {
+  prepareSave(): any {
     let input = new FormData();
     input.append('imgLocatie', this.afbeelding.get('afbeelding').value);
-    console.log(input);
     return input;
   }
 
@@ -89,9 +91,14 @@ export class TrajectLocatiesDetailComponent implements OnInit {
     this.removing = afbeelding;
     $('.ui.modal.remove').modal('show');
   }
+  closeRemove() {
+    $('.ui.modal.remove').modal('hide');
+  }
   removeAfbeelding() {
     _.remove(this._locatie.afbeeldingen, {_id: this.removing.id});
     this._trajectenDataService.deleteAfbeelding(this._traject.id, this._locatie.id, this.removing.id).subscribe();
+    this.removing = null;
+    this.closeRemove();
   }
 
   setDimmer() {

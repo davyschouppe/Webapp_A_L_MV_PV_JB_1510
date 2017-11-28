@@ -17,10 +17,14 @@ import { LeerlingenComponent } from './leerlingen/leerlingen.component';
 import { LeerlingenInfoDetailComponent } from './leerlingen-detail-info/leerlingen-detail-info.component';
 import { LeerlingenDetailComponent } from './leerlingen-detail/leerlingen-detail.component';
 import { LeerlingenDetailTrackingComponent } from './leerlingen-detail-tracking/leerlingen-detail-tracking.component';
-import {HttpModule} from '@angular/http';
+import { HttpModule } from '@angular/http';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { OrderByPipe } from './custom_pipes/order-by.pipe';
+
+import { AfsprakenDataServiceService } from './afspraken-data-service.service';
+import { OdsDataService } from './ods-data.service';
+import { TrajectenDataService } from './trajecten-data.service';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -62,7 +66,11 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [
+    AfsprakenDataServiceService,
+    OdsDataService,
+    TrajectenDataService
+  ],
   bootstrap: [AppComponent]
 })
 
