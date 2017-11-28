@@ -21,7 +21,7 @@
               </div>
             </div>
           </div>
-          <img src={{afbeelding?.link}}>
+          <img src='/assets/images/{{afbeelding?.link}}'>
         </div>
         {{setDimmer()}}
       </div>
@@ -29,7 +29,7 @@
   </div>
 </div>
 
-<form [formGroup]='afbeelding' (ngSubmit)='newAfbeelding()' class="ui modal tiny makeafbeelding">
+<form [formGroup]='afbeelding' class="ui modal tiny makeafbeelding">
   <div class="ui header">
     Voeg een afbeelding toe
   </div>
@@ -40,11 +40,11 @@
     </div>
   </div>
   <div class="actions">
-    <button class="ui red compact button" type='button' (click)="closeNewAfbeelding()">
+    <button class="ui red compact button" type='reset' (click)="closeNewAfbeelding()">
       <i class="remove icon"></i>
       Annuleer
     </button>
-    <button class="ui green compact button" type='submit'>
+    <button class="ui green compact button" type='reset' (click)="newAfbeelding()">
       <i class="checkmark icon"></i>
       Maak
     </button>
@@ -87,15 +87,15 @@
       Wilt u deze afbeelding <strong>permanent</strong> verwijderen?
       <br>
       <br>
-      <img class="ui medium rounded image" src={{removing?.link}}>
+      <img class="ui medium rounded image" src='/assets/images/{{removing?.link}}'>
     </div>
     <div class="actions">
-      <div class="ui cancel compact button">
+      <button class="ui cancel compact button" (click)="closeRemove()">
         Annuleer
-      </div>
-      <div class="ui red ok compact button" (click)="removeAfbeelding()">
+      </button>
+      <button class="ui red ok compact button" (click)="removeAfbeelding()">
         <i class="remove icon"></i>
         Verwijder
-      </div>
+      </button>
     </div>
   </div>

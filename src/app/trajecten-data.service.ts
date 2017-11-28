@@ -10,7 +10,7 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class TrajectenDataService {
-  private _appUrl = 'http://localhost:4200/API/';
+  private _appUrl = 'http://localhost:4200/API';
   private _trajecten = new Array<Traject>();
 
   constructor(private http: Http) { }
