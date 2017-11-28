@@ -1,9 +1,40 @@
-<app-navigationbar></app-navigationbar>
+<div class="ui grey inverted secondary pointing menu">
+  <div class="ui container" *ngIf='(currentUser | async) else loginlink'>
+    <a class="item" routerLink="/trajecten" routerLinkActive="active">
+      Trajecten
+    </a>
+    <a class="item" routerLink="/afspraken" routerLinkActive="active">
+      Afspraken
+    </a>
+    <a class="item" routerLink="/ods" routerLinkActive="active">
+      OD's
+    </a>
+    <a class="item" routerLink="/leerlingen" routerLinkActive="active">
+      Leerlingen
+    </a>
+    <div class="right menu">
+      <a class="item" routerLink="/logout" routerLinkActive="active">
+        Logout
+      </a>
+    </div>
+  </div>
+  <ng-template #loginlink>
+    <div class="ui container">
+      <div class="right menu">
+        <a class="item" routerLinkActive='active' routerLink="/login">
+          Login
+        </a>
+      </div>
+    </div>
+  </ng-template>
+</div>
+
+<!--<app-navigationbar></app-navigationbar>-->
 <div class="ui container">
   <div class="ui hidden divider"></div>
 
   <router-outlet></router-outlet>
-  
+
   <!--<app-ods></app-ods>-->
   <!--<app-afspraken></app-afspraken>-->
 

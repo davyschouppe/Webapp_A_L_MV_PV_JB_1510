@@ -1,6 +1,7 @@
+import { AuthenticationService } from './authentication.service';
 import { Injectable } from '@angular/core';
 import {Afspraak} from './afspraken/afspraak.model';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers } from '@angular/http';
 import 'rxjs/Rx';
 import {Observable} from 'rxjs/Observable';
 
@@ -9,7 +10,7 @@ export class AfsprakenDataServiceService {
   private _appUrl = 'http://localhost:4200/API/afspraken/';
   private _afspraken = new Array<Afspraak>();
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private auth: AuthenticationService) {
     // console.log(this._ods);
   }
 
@@ -22,11 +23,11 @@ export class AfsprakenDataServiceService {
   }
 
   editAfspraak(afspraak: Afspraak) {
-      return this.http.put('http://localhost:4200/API/afspraken/' + afspraak.id, afspraak.toJSON());
+      return this.http.put('http://localhost:4200/API/afspraken/' + afspraak.id, afspraak.toJSON(), { headers: new Headers({Authorization: `Bearer ${this.auth.token}`}) });
     }
 
   addAfspraak(afspraak): Observable<Afspraak> {
-    return this.http.post(this._appUrl, afspraak).map(res => res.json()).map(item => Afspraak.fromJSON(item));
+    return this.http.post(this._appUrl, afspraak, { headers: new Headers({Authorization: `Bearer ${this.auth.token}`}) }).map(res => res.json()).map(item => Afspraak.fromJSON(item));
   }
 
   deleteAfspraak(id: string) {

@@ -1,6 +1,7 @@
+import { AuthenticationService } from './authentication.service';
 import { Injectable } from '@angular/core';
 import {Od} from './ods/od.model';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers } from '@angular/http';
 import 'rxjs/Rx';
 import {Observable} from 'rxjs/Observable';
 
@@ -9,7 +10,7 @@ export class OdsDataService {
   private _appUrl = 'http://localhost:4200/API/ontwikkelingsdoelen/';
   private _ods = new Array<Od>();
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private auth: AuthenticationService) {
     // console.log(this._ods);
   }
 
@@ -25,10 +26,10 @@ export class OdsDataService {
   }
 
   addOd(od): Observable<Od> {
-    return this.http.post(this._appUrl, od).map(res => res.json()).map(item => Od.fromJSON(item));
+    return this.http.post(this._appUrl, od, { headers: new Headers({Authorization: `Bearer ${this.auth.token}`}) }).map(res => res.json()).map(item => Od.fromJSON(item));
   }
 
   editOd(od: Od) {
-    return this.http.put('http://localhost:4200/API/ontwikkelingsdoelen/' + od.id, od.toJSON());
+    return this.http.put('http://localhost:4200/API/ontwikkelingsdoelen/' + od.id, od.toJSON(), { headers: new Headers({Authorization: `Bearer ${this.auth.token}`}) });
   }
 }
