@@ -43,6 +43,10 @@ app.use('/API', ontwikkelingsdoelen);
 app.use('/API', afspraken);
 app.use('/API', trajecten);
 
+app.all("*", (req, res) => {
+  res.status(200).sendFile(`${path.join(__dirname, 'dist')}/index.html`);
+})
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

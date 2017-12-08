@@ -26,7 +26,7 @@ export class TrajectenComponent implements OnInit {
     private fb: FormBuilder) { }
 
   ngOnInit() {
-    this._trajectenDataService.trajecten.takeUntil(this.myUnsubscribe).subscribe(
+    this._trajectenDataService.trajecten.subscribe(
       items => this._trajecten = items);
 
     this.traject = this.fb.group({
