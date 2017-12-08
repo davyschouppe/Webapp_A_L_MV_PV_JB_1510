@@ -21,7 +21,7 @@ var afspraken = require('./backend/routes/afspraken');
 var trajecten = require('./backend/routes/trajecten');
 var users = require('./backend/routes/users');
 
-mongoose.connect('mongodb://webapp-user:user123@ds149865.mlab.com:49865/levensvreugde-db', {  useMongoClient: true });
+mongoose.connect(process.env.TOTALLY_NOT_A_DB, {  useMongoClient: true });
 
 var app = express();
 
