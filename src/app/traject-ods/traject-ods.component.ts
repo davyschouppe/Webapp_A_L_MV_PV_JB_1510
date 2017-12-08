@@ -54,7 +54,7 @@ export class TrajectOdsComponent implements OnInit {
   updateOdList() {
     for (var i = 0; i < this.traject.ods.length; i++) {
       for (var j = 0; j < this._ods.length; j++) {
-        if (this._ods[j].id == this.traject.ods[i]._id) {
+        if (this._ods[j].id === this.traject.ods[i]._id) {
           this._ods.splice(j, 1);
         }
       }

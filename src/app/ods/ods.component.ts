@@ -13,7 +13,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   selector: 'app-ods',
   templateUrl: './ods.component.html',
   styleUrls: ['./ods.component.css'],
-  providers: [OdsDataService]
+  providers: [ OdsDataService ]
 })
 export class OdsComponent implements OnInit {
   // ods = new Array<Object>();
