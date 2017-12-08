@@ -28,6 +28,7 @@ var app = express();
 // start frontend
 app.use(express.static(__dirname + '/dist'));
 app.listen(process.env.PORT || 4200);
+
 // uncomment after placing your favicon in /public
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
