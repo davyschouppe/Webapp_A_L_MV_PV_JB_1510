@@ -1,2 +1,0 @@
-export TOTALLY_NOT_A_SECRET='brentmeulemanisneviezeflikker';
-export TOTALLY_NOT_A_DB='mongodb://webapp-user:user123@ds149865.mlab.com:49865/levensvreugde-db';
