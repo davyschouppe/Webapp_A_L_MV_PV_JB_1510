@@ -20,10 +20,14 @@ var ontwikkelingsdoelen = require('./backend/routes/ontwikkelingsdoelen');
 var afspraken = require('./backend/routes/afspraken');
 var trajecten = require('./backend/routes/trajecten');
 var users = require('./backend/routes/users');
+var afbeeldingen = require('./backend/routes/afbeeldingen');
 
 mongoose.connect('mongodb://webapp-user:user123@ds149865.mlab.com:49865/levensvreugde-db', {  useMongoClient: true });
 
 var app = express();
+
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
 // start frontend
 app.use(express.static(__dirname + '/dist'));
@@ -34,7 +38,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-//app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(passport.initialize());
 
@@ -42,6 +46,7 @@ app.use('/API/users', users);
 app.use('/API', ontwikkelingsdoelen);
 app.use('/API', afspraken);
 app.use('/API', trajecten);
+app.use('/API', afbeeldingen);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
