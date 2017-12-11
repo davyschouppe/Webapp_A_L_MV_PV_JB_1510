@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var jwt = require('express-jwt');
 
 var Ontwikkelingsdoel = mongoose.model('ontwikkelingsdoel');
+var Traject = mongoose.model('traject');
 
 var auth = jwt({secret: process.env.TOTALLY_NOT_A_SECRET, userProperty: 'payload'});
 
