@@ -7,7 +7,7 @@ import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class OdsDataService {
-  private _appUrl = 'http://localhost:4200/API/ontwikkelingsdoelen/';
+  private _appUrl = '/API/ontwikkelingsdoelen/';
   private _ods = new Array<Od>();
 
   constructor(private http: Http, private auth: AuthenticationService) {
@@ -22,7 +22,7 @@ export class OdsDataService {
     );
   }
   deleteOd(id: string) {
-    return this.http.delete('http://localhost:4200/API/ontwikkelingsdoelen/' + id);
+    return this.http.delete('/API/ontwikkelingsdoelen/' + id);
   }
 
   addOd(od): Observable<Od> {
@@ -30,6 +30,6 @@ export class OdsDataService {
   }
 
   editOd(od: Od) {
-    return this.http.put('http://localhost:4200/API/ontwikkelingsdoelen/' + od.id, od.toJSON(), { headers: new Headers({Authorization: `Bearer ${this.auth.token}`}) });
+    return this.http.put('/API/ontwikkelingsdoelen/' + od.id, od.toJSON(), { headers: new Headers({Authorization: `Bearer ${this.auth.token}`}) });
   }
 }

@@ -7,7 +7,7 @@ import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class AfsprakenDataServiceService {
-  private _appUrl = 'http://localhost:4200/API/afspraken/';
+  private _appUrl = '/API/afspraken/';
   private _afspraken = new Array<Afspraak>();
 
   constructor(private http: Http, private auth: AuthenticationService) {
@@ -23,7 +23,7 @@ export class AfsprakenDataServiceService {
   }
 
   editAfspraak(afspraak: Afspraak) {
-      return this.http.put('http://localhost:4200/API/afspraken/' + afspraak.id, afspraak.toJSON(), { headers: new Headers({Authorization: `Bearer ${this.auth.token}`}) });
+      return this.http.put('/API/afspraken/' + afspraak.id, afspraak.toJSON(), { headers: new Headers({Authorization: `Bearer ${this.auth.token}`}) });
     }
 
   addAfspraak(afspraak): Observable<Afspraak> {
@@ -31,6 +31,6 @@ export class AfsprakenDataServiceService {
   }
 
   deleteAfspraak(id: string) {
-    return this.http.delete('http://localhost:4200/API/afspraken/' + id);
+    return this.http.delete('/API/afspraken/' + id);
   }
 }
