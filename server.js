@@ -20,10 +20,14 @@ var ontwikkelingsdoelen = require('./backend/routes/ontwikkelingsdoelen');
 var afspraken = require('./backend/routes/afspraken');
 var trajecten = require('./backend/routes/trajecten');
 var users = require('./backend/routes/users');
+var afbeeldingen = require('./backend/routes/afbeeldingen');
 
 mongoose.connect(process.env.TOTALLY_NOT_A_DB, {  useMongoClient: true });
 
 var app = express();
+
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
 // start frontend
 app.use(express.static(__dirname + '/dist'));
@@ -35,7 +39,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-//app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(passport.initialize());
 
@@ -43,6 +47,7 @@ app.use('/API/users', users);
 app.use('/API', ontwikkelingsdoelen);
 app.use('/API', afspraken);
 app.use('/API', trajecten);
+app.use('/API', afbeeldingen);
 
 app.all("*", (req, res) => {
   res.status(200).sendFile(`${path.join(__dirname, 'dist')}/index.html`);

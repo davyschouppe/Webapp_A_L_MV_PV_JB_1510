@@ -89,11 +89,28 @@ router.get('/trajecten/:traject', function(req, res) {
     });
 });
 
-router.delete('/trajecten/:traject', auth, function(req, res) {
-    req.traject.remove(function(err) {
-        if (err) { return next(err); }
-        res.json("traject is verwijderd");
+// router.delete('/trajecten/:traject', auth, function(req, res) {
+//     req.traject.remove(function(err) {
+//         if (err) { return next(err); }
+//         res.json("traject is verwijderd");
+//     });
+// });
+
+router.delete('/trajecten/:traject', auth, function(req, res, next) {
+  _.forEach(req.traject.locaties, function(locatieId) {
+    Locatie.findById(locatieId, function(err, locatie) {
+      Afbeelding.remove({ _id: {$in: locatie.afbeeldingen }}, function (err) {
+        if (err) return next(err);
+        Locatie.remove({ _id: {$in: req.traject.locaties }}, function (err) {
+            if (err) return next(err);
+            req.traject.remove(function(err) {
+              if (err) { return next(err); }
+                res.json("traject is verwijderd");
+            });
+        });
+      })
     });
+  });
 });
 
 router.put('/trajecten/:traject', auth, function(req, res) {
@@ -188,11 +205,21 @@ router.post('/trajecten/:traject/locaties/:locatie/afbeeldingen', auth, function
     });
 });
 
-router.delete('/trajecten/:traject/locaties/:locatie', auth, function(req, res) {
+// router.delete('/trajecten/:traject/locaties/:locatie', auth, function(req, res) {
+//     req.locatie.remove(function(err) {
+//         if (err) { return next(err); }
+//         res.json("locatie is verwijderd");
+//     });
+// });
+
+router.delete('/trajecten/:traject/locaties/:locatie', auth, function(req, res, next) {
+  Afbeelding.remove({ _id: {$in: req.locatie.afbeeldingen }}, function (err) {
+    if (err) return next(err);
     req.locatie.remove(function(err) {
-        if (err) { return next(err); }
-        res.json("locatie is verwijderd");
+      if (err) { return next(err); }
+      res.json("locatie is verwijderd");
     });
+  })
 });
 
 router.param('afbeelding', function(req, res, next, id) {
