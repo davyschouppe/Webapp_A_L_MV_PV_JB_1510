@@ -10,20 +10,16 @@
       <i class="plus icon"></i>Nieuwe foto</button>
   </div>
   <div class="ui segment">
-    <div class="ui four cards">
+    <div class="ui four stackable cards">
       <div class="card special" *ngFor="let afbeelding of _locatie?.afbeeldingen">
-        <div class="blurring dimmable image">
-          <div class="ui dimmer">
-            <div class="content">
-              <div class="center">
-                <div class="ui inverted red button" (click)="openRemove(afbeelding)">
-                  <i class="trash outline icon"></i>Delete</div>
-              </div>
-            </div>
-          </div>
-          <img src='/assets/images/{{afbeelding?.link}}'>
+        <div class="image cardimage">
+            <img src='uploads/{{afbeelding?.link}}'>
         </div>
-        {{setDimmer()}}
+        <div class="extra clearing content">
+          <div class="ui red compact icon right floated button" (click)="openRemove(afbeelding)">
+            <i class="trash outline icon"></i>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -87,7 +83,7 @@
       Wilt u deze afbeelding <strong>permanent</strong> verwijderen?
       <br>
       <br>
-      <img class="ui medium rounded image" src='/assets/images/{{removing?.link}}'>
+      <img class="ui medium rounded image" src='/uploads/{{removing?.link}}'>
     </div>
     <div class="actions">
       <button class="ui cancel compact button" (click)="closeRemove()">

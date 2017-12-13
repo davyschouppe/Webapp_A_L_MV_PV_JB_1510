@@ -29,8 +29,8 @@ router.param('afbeelding', function(req, res, next, id) {
 router.get('/afbeeldingen/:afbeelding', function(req, res, next) {
   res.render('index', {
     // gebruikt dit als de afbeeldingen opgeslagen worden in /public/uploads. dit maakt gebruikt van de static middleware
-    //file: `/uploads/${req.afbeelding.link}`
-    file: `/assets/images/${req.afbeelding.link}`
+    file: `/uploads/${req.afbeelding.link}`
+    //file: `/assets/images/${req.afbeelding.link}`
   });
 });
 

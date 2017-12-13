@@ -8,7 +8,7 @@
     <div class="ui three stackable cards">
       <div class="ui card trajectcard" *ngFor="let locatie of traject?.locaties">
         <a class="image cardimage">
-          <img *ngIf='getFirstPicture(locatie) != ""' src="/assets/images/{{getFirstPicture(locatie)}}">
+          <img *ngIf='getFirstPicture(locatie) != ""' src="uploads/{{getFirstPicture(locatie)}}">
         </a>
         <div class="content">
           <p class="header">{{locatie?.naam}}</p>

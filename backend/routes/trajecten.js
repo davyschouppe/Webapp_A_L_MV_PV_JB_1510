@@ -16,7 +16,7 @@ var auth = jwt({secret: process.env.TOTALLY_NOT_A_SECRET, userProperty: 'payload
 
 // Set Storage Engine
 const storage = multer.diskStorage({
-    destination: './dist/assets/images/',
+    destination: './public/uploads/',
     filename: function(req, file, cb){
         cb(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     }
@@ -234,7 +234,7 @@ router.param('afbeelding', function(req, res, next, id) {
     });
 });
 
-router.delete('/trajecten/:traject/locaties/:locatie/afbeeldingen/:afbeelding', auth, function(req, res) {
+router.delete('/trajecten/:traject/locaties/:locatie/afbeeldingen/:afbeelding', auth, function(req, res, next) {
     req.afbeelding.remove(function(err) {
         if (err) { return next(err); }
         res.json("afbeelding is verwijderd");
