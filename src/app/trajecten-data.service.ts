@@ -56,10 +56,6 @@ export class TrajectenDataService {
     return this.http.post(`${this._appUrl}/trajecten/${id}/locaties`, locatie, { headers: new Headers({Authorization: `Bearer ${this.auth.token}`}) })
       .map(res => res.json()).map(item => Locatie.fromJSON(item));
   }
-  addAfbeelding(trajectid: string, locatieid: string, afbeelding): Observable<Afbeelding> {
-    return this.http.post(`${this._appUrl}/trajecten/${trajectid}/locaties/${locatieid}/afbeeldingen`, afbeelding, { headers: new Headers({Authorization: `Bearer ${this.auth.token}`}) })
-      .map(res => res.json()).map(item => Afbeelding.fromJSON(item));
-  }
   uploadAfbeelding(trajectid: string, locatieid: string, afbeelding): Observable<Afbeelding> {
     return this.http.post(`${this._appUrl}/trajecten/${trajectid}/locaties/${locatieid}/afbeeldingen`, afbeelding, { headers: new Headers({Authorization: `Bearer ${this.auth.token}`}) })
       .map(res => res.json()).map(item => Afbeelding.fromJSON(item));

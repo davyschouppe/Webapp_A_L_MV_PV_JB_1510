@@ -40,10 +40,6 @@ export class TrajectLocatiesDetailComponent implements OnInit {
       }
     );
 
-    $('.special.card .image').dimmer({
-      on: 'hover'
-    });
-
     this.afbeelding = this.fb.group({
       afbeelding: [null, Validators.required]
     });
@@ -96,12 +92,9 @@ export class TrajectLocatiesDetailComponent implements OnInit {
   }
   removeAfbeelding() {
     _.remove(this._locatie.afbeeldingen, {_id: this.removing.id});
+    console.log(`${this._traject.id}/${this._locatie.id}/${this.removing.id}`);
     this._trajectenDataService.deleteAfbeelding(this._traject.id, this._locatie.id, this.removing.id).subscribe();
     this.removing = null;
     this.closeRemove();
-  }
-
-  setDimmer() {
-    $('.special.card .image').dimmer({on: 'hover'});
   }
 }

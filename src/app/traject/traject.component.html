@@ -3,7 +3,7 @@
       <input type="text" placeholder="Traject naam..." value={{_traject?.naam}}>
       <i class="edit icon"></i>
     </div>
-    <button class="ui right floated red button">
+    <button class="ui right floated red button" (click)="openDeleteTraject()">
       <i class="trash outline icon"></i>Verwijder traject</button>
   </div>
 <div class="ui grid">
@@ -16,3 +16,22 @@
     <app-traject-afspraken [traject]="_traject"></app-traject-afspraken>
   </div>
 </div>
+
+<div class="ui modal tiny removetraject">
+    <div class="ui header">
+      Verwijder een <strong>traject</strong>
+    </div>
+    <div class="content">
+      Wilt u 
+      <strong>"{{_traject?.naam}}"</strong> verwijderen?
+    </div>
+    <div class="actions">
+      <div class="ui cancel compact button">
+        Annuleer
+      </div>
+      <div class="ui red compact button" (click)="deleteTraject()">
+        <i class="remove icon"></i>
+        Verwijder
+      </div>
+    </div>
+  </div>

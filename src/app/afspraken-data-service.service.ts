@@ -22,7 +22,7 @@ export class AfsprakenDataServiceService {
     );
   }
 
-  editAfspraak(afspraak: Afspraak) {
+  editAfspraak(afspraak) {
       return this.http.put('/API/afspraken/' + afspraak.id, afspraak.toJSON(), { headers: new Headers({Authorization: `Bearer ${this.auth.token}`}) });
     }
 

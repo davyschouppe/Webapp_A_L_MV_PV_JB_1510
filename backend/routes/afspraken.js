@@ -16,7 +16,7 @@ var auth = jwt({secret: process.env.TOTALLY_NOT_A_SECRET, userProperty: 'payload
 
 // Set Storage Engine
 const storage = multer.diskStorage({
-  destination: './dist/assets/images/',
+  destination: './public/uploads/',
   filename: function(req, file, cb){
     cb(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
   }

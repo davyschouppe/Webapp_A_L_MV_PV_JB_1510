@@ -16,7 +16,7 @@
           </div>
         </div>
         <div class="content">
-          <img class="ui avatar image" src={{afspraak?.icon}}> {{afspraak?.beschrijving}}
+          <img class="ui avatar image" src='uploads/{{afspraak?.icon.link}}'> {{afspraak?.beschrijving}}
         </div>
       </div>
     </div>
@@ -30,14 +30,8 @@
   <div class="content">
     <div class="ui form">
       <div class="field">
-        <label>Icoon</label>
-        <input type="text" name="icon" formControlName='icon' placeholder="Icon URL">
-        <div *ngIf='afspraak.get("icon").errors?.required && afspraak.get("icon").touched' class='ui pointing red basic label'>
-          Dit veld is verplicht.
-        </div>
-        <div *ngIf='afspraak.get("icon").errors?.minlength && afspraak.get("icon").touched' class='ui pointing red basic label'>
-          Dit veld moet minimum {{afspraak.get("icon").errors?.minlength.requiredLength}} tekens lang zijn.
-        </div>
+        <label for="link">Icoon</label>
+        <input type="file" id="file" (change)="onFileChangeNew($event)" #fileInput>
       </div>
       <div class="field">
         <label>Beschrijving</label>
@@ -70,14 +64,8 @@
   <div class="content">
     <div class="ui form">
       <div class="field">
-        <label>Icoon</label>
-        <input type="text" name="icon" placeholder="Icon URL" formControlName='icon'>
-        <div *ngIf='editingAfspraakFormGroup.get("icon").errors?.required && editingAfspraakFormGroup.get("icon").touched' class='ui pointing red basic label'>
-          Dit veld is verplicht.
-        </div>
-        <div *ngIf='editingAfspraakFormGroup.get("icon").errors?.minlength && editingAfspraakFormGroup.get("icon").touched' class='ui pointing red basic label'>
-          Dit veld moet minimum {{editingAfspraakFormGroup.get("icon").errors?.minlength.requiredLength}} tekens lang zijn.
-        </div>
+        <label for="link">Icoon</label>
+        <input type="file" id="file" (change)="onFileChangeEdit($event)" #fileInput>
       </div>
       <div class="field">
         <label>Beschrijving</label>
@@ -110,7 +98,7 @@
   <div class="content">
     <div class="item">
       <div class="content">
-        <img class="ui avatar image" src={{removingAfspraak?.icon}}> {{removingAfspraak?.beschrijving}}
+        <img class="ui avatar image" src='uploads/{{removingAfspraak?.icon.link}}'> {{removingAfspraak?.beschrijving}}
       </div>
     </div>
     <br>Wilt u deze afspraak
