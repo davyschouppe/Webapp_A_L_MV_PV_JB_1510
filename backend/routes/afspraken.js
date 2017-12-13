@@ -48,10 +48,12 @@ function checkFileType(file, cb){
 }
 
 router.get('/afspraken/', function(req, res, next) {
-    Afspraak.find(function(err, afspraken) {
-        if (err) { return next(err); }
-        res.json(afspraken);
-    });
+  var query = Afspraak.find().populate('icon');
+
+  query.exec((function(err, afspraken) {
+      if (err) { return next(err); }
+      res.json(afspraken);
+  }));
 });
 
 router.post('/afspraken/', function (req, res, next) {
