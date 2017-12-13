@@ -215,9 +215,13 @@ router.post('/trajecten/:traject/locaties/:locatie/afbeeldingen', auth, function
 router.delete('/trajecten/:traject/locaties/:locatie', auth, function(req, res, next) {
   Afbeelding.remove({ _id: {$in: req.locatie.afbeeldingen }}, function (err) {
     if (err) return next(err);
-    req.locatie.remove(function(err) {
-      if (err) { return next(err); }
-      res.json("locatie is verwijderd");
+    req.traject.locaties.pull({_id : req.locatie._id});
+    req.traject.save(function(err, traject) {
+      if (err){ return next(err); }
+      req.locatie.remove(function(err) {
+        if (err) { return next(err); }
+        res.json("locatie is verwijderd");
+      });
     });
   })
 });
@@ -234,11 +238,18 @@ router.param('afbeelding', function(req, res, next, id) {
     });
 });
 
-router.delete('/trajecten/:traject/locaties/:locatie/afbeeldingen/:afbeelding', auth, function(req, res) {
-    req.afbeelding.remove(function(err) {
-        if (err) { return next(err); }
-        res.json("afbeelding is verwijderd");
-    });
+router.delete('/trajecten/:traject/locaties/:locatie/afbeeldingen/:afbeelding', function(req, res, next) {
+  console.log(req.afbeelding);
+    // req.afbeelding.remove(function(err) {
+    //     if (err) { return next(err); }
+    //     res.json("afbeelding is verwijderd");
+    // });
+  Afbeelding.findByIdAndRemove(req.afbeelding._id, function(err, afbeelding) {
+    if(err){
+      return err;
+    }
+    res.json(afbeelding);
+  });
 });
 
 router.param('ontwikkelingsdoel', function(req, res, next, id) {
