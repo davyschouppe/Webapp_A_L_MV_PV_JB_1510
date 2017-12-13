@@ -52,7 +52,7 @@ function checkFileType(file, cb){
 });*/
 
 router.get('/trajecten/', function(req, res, next) {
-    var query = Traject.find().populate({path: 'locaties', populate: { path: 'afbeeldingen' }}).populate('afspraken').populate('ontwikkelingsdoelen');
+    var query = Traject.find().populate({path: 'locaties', populate: { path: 'afbeeldingen' }}).populate({path: 'afspraken', populate: { path: 'icon' }}).populate('ontwikkelingsdoelen');
 
     query.exec((function(err, trajecten) {
         if (err) { return next(err); }
@@ -83,7 +83,7 @@ router.param('traject', function(req, res, next, id) {
 });
 
 router.get('/trajecten/:traject', function(req, res) {
-    req.traject.populate({path: 'locaties', populate: { path: 'afbeeldingen' }}).populate('afspraken').populate('ontwikkelingsdoelen', function(err, traject) {
+    req.traject.populate({path: 'locaties', populate: { path: 'afbeeldingen' }}).populate({path: 'afspraken', populate: { path: 'icon' }}).populate('ontwikkelingsdoelen', function(err, traject) {
         if (err) { return next(err); }
         res.json(traject);
     });

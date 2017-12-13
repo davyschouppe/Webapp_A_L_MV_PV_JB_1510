@@ -33,7 +33,9 @@ export class AfsprakenComponent implements OnInit {
 
   ngOnInit() {
     this._afsprakenDataService.afspraken.takeUntil(this.myUnsubscribe).subscribe(
-      items => this._afspraken = items);
+      items => {
+        this._afspraken = items;
+      });
     this.afspraak = this.fb.group({
       icon: [null, [Validators.required]],
       beschrijving: [null, [Validators.required, Validators.minLength(2)]]
