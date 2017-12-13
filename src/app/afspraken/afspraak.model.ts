@@ -1,16 +1,18 @@
+import { Afbeelding } from '../traject-locaties-detail/afbeelding.model';
+
 export class Afspraak {
 
   private _id: string;
-  private _icon: string;
+  private _icon: Afbeelding;
   private _beschrijving: string;
 
   static fromJSON(json): Afspraak {
-    const rec = new Afspraak(json.icon, json.beschrijving);
+    const rec = new Afspraak(Afbeelding.fromJSON(json.icon), json.beschrijving);
     rec._id = json._id;
     return rec;
   }
 
-  constructor(icon: string, beschrijving: string, _id?: string) {
+  constructor(icon: Afbeelding, beschrijving: string, _id?: string) {
     this._id = _id;
     this._icon = icon;
     this._beschrijving = beschrijving;
@@ -22,10 +24,10 @@ export class Afspraak {
   set beschrijving(beschrijving: string) {
     this._beschrijving = beschrijving;
   }
-  get icon(): string {
+  get icon(): Afbeelding {
     return this._icon;
   }
-  set icon(icon: string) {
+  set icon(icon: Afbeelding) {
     this._icon = icon;
   }
   get id(): string {

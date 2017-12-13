@@ -48,10 +48,35 @@ export class AfsprakenComponent implements OnInit {
     this.myUnsubscribe.complete();
   }
 
+  onFileChangeNew(event) {
+    if(event.target.files.length > 0) {
+      let file = event.target.files[0];
+      this.afspraak.get('icon').setValue(file);
+    }
+  }
+  onFileChangeEdit(event) {
+    if(event.target.files.length > 0) {
+      let file = event.target.files[0];
+      this.editingAfspraakFormGroup.get('icon').setValue(file);
+    }
+  }
+  prepareSaveNew(): any {
+    let input = new FormData();
+    input.append('imgAfspraak', this.afspraak.get('icon').value);
+    input.append('beschrijving', this.afspraak.value.beschrijving);
+    return input;
+  }
+  prepareSaveEdit(): any {
+    let input = new FormData();
+    input.append('imgAfspraak', this.editingAfspraakFormGroup.get('icon').value);
+    this.editingAfspraak.beschrijving = this.editingAfspraakFormGroup.value.beschrijving;
+    input.append('afspraak', this.editingAfspraak);
+    return input;
+  }
+
   get afspraken() {
     return this._afspraken;
   }
-
   openNewRule() {
     this.afspraak.reset();
     $('.ui.modal.makerule').modal('show');
@@ -72,17 +97,16 @@ export class AfsprakenComponent implements OnInit {
 
   addRule() {
     if (this.afspraak.valid) {
-      const afspraak = new Afspraak(this.afspraak.value.icon, this.afspraak.value.beschrijving);
-      this._afsprakenDataService.addAfspraak(afspraak.toJSON()).subscribe(item => this._afspraken.push(item));
+      var afspraak = this.prepareSaveNew();
+      this._afsprakenDataService.addAfspraak(afspraak).subscribe(item => this._afspraken.push(item));
       this.afspraak.reset();
     }
   }
   editRule() {
     if (this.editingAfspraakFormGroup.valid) {
-      this.editingAfspraak.icon = this.editingAfspraakFormGroup.value.icon;
-      this.editingAfspraak.beschrijving = this.editingAfspraakFormGroup.value.beschrijving;
-      this._afspraken[_.findIndex(this._afspraken, { _id: this.editingAfspraak.id })] = this.editingAfspraak;
-      this._afsprakenDataService.editAfspraak(this.editingAfspraak).subscribe();
+      var afspraak = this.prepareSaveEdit();
+      //this._afspraken[_.findIndex(this._afspraken, { _id: this.editingAfspraak.id })] = this.editingAfspraak;
+      this._afsprakenDataService.editAfspraak(afspraak).subscribe();
       this.editingAfspraakFormGroup.reset();
     }
   }

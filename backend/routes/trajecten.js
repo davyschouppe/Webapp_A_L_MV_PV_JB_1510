@@ -234,7 +234,8 @@ router.param('afbeelding', function(req, res, next, id) {
     });
 });
 
-router.delete('/trajecten/:traject/locaties/:locatie/afbeeldingen/:afbeelding', auth, function(req, res, next) {
+router.delete('/trajecten/:traject/locaties/:locatie/afbeeldingen/:afbeelding', function(req, res, next) {
+    console.log(req.afbeelding);
     req.afbeelding.remove(function(err) {
         if (err) { return next(err); }
         res.json("afbeelding is verwijderd");
