@@ -22,7 +22,7 @@ export class OdsDataService {
     );
   }
   deleteOd(id: string) {
-    return this.http.delete('/API/ontwikkelingsdoelen/' + id);
+    return this.http.delete('/API/ontwikkelingsdoelen/' + id, { headers: new Headers({Authorization: `Bearer ${this.auth.token}`}) });
   }
 
   addOd(od): Observable<Od> {
