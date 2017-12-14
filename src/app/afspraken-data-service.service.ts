@@ -31,6 +31,6 @@ export class AfsprakenDataServiceService {
   }
 
   deleteAfspraak(id: string) {
-    return this.http.delete('/API/afspraken/' + id);
+    return this.http.delete('/API/afspraken/' + id, { headers: new Headers({Authorization: `Bearer ${this.auth.token}`}) });
   }
 }
