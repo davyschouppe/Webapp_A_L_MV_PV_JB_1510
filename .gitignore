@@ -5,6 +5,7 @@
 /tmp
 /out-tsc
 app-env
+/public
 
 # dependencies
 /node_modules

@@ -54,18 +54,25 @@ export class TrajectLocatiesDetailComponent implements OnInit {
     }*/
 
     // NIEUWE METHODE:
-    var image = this.prepareSave();
-    this._trajectenDataService.uploadAfbeelding(this._traject.id, this._locatie.id, image)
-      .subscribe(item => this._locatie.afbeeldingen.push(item));
-    this.afbeelding.reset();
-    this.closeNewAfbeelding();
+    if (this.afbeelding.get('afbeelding').value !== null) {
+      var image = this.prepareSave();
+      this._trajectenDataService.uploadAfbeelding(this._traject.id, this._locatie.id, image)
+        .subscribe(item => {
+          if (item !== null) { this._locatie.afbeeldingen.push(item); }
+        });
+      this.afbeelding.reset();
+      $('input[type=file].imginp').val('');
+      this.closeNewAfbeelding();
+    }
   }
   // Als de gebruiker de file aanpast zal deze functie opgeroepen worden.
   // De waarde van afbeelding zal dan verandert worden naar de nieuwe afbeelding.
   onFileChange(event) {
-    if(event.target.files.length > 0) {
+    if (event.target.files.length > 0) {
       let file = event.target.files[0];
       this.afbeelding.get('afbeelding').setValue(file);
+    } else {
+      this.afbeelding.get('afbeelding').setValue(null);
     }
   }
   // Return het file object.

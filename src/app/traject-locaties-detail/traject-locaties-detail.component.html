@@ -32,7 +32,7 @@
   <div class="content ui form">
     <div class="field">
       <label for="link">File</label>
-      <input type="file" id="file" (change)="onFileChange($event)" #fileInput>
+      <input type="file" id="file" class="imginp" (change)="onFileChange($event)" #fileInput>
     </div>
   </div>
   <div class="actions">
@@ -40,7 +40,7 @@
       <i class="remove icon"></i>
       Annuleer
     </button>
-    <button class="ui green compact button" type='reset' (click)="newAfbeelding()">
+    <button class="ui green compact button" type='reset' (click)="newAfbeelding()"  [disabled]='!afbeelding.valid'>
       <i class="checkmark icon"></i>
       Maak
     </button>

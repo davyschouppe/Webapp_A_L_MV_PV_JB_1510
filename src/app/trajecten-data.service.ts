@@ -17,7 +17,7 @@ export class TrajectenDataService {
   constructor(private http: Http, private auth: AuthenticationService) { }
 
   get trajecten(): Observable<Traject[]> {
-    console.log(`${this._appUrl}/trajecten`);
+    //console.log(`${this._appUrl}/trajecten`);
     return this.http.get(`${this._appUrl}/trajecten`)
       .map(response => response.json().map(item => Traject.fromJSON(item)));
   }
