@@ -29,8 +29,6 @@ import { AuthenticationService } from './authentication.service';
 import { AuthGuardService } from './auth-guard.service';
 
 const appRoutes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'logout', component: LogoutComponent },
   { path: 'locatie/:trajectid/:locatieid', canActivate: [ AuthGuardService ], component: TrajectLocatiesDetailComponent},
   { path: 'traject/:id', canActivate: [ AuthGuardService ], component: TrajectComponent},
   { path: 'trajecten', canActivate: [ AuthGuardService ], component: TrajectenComponent},
@@ -38,8 +36,10 @@ const appRoutes: Routes = [
   { path: 'leerlingen', canActivate: [ AuthGuardService ], component: LeerlingenComponent },
   { path: 'ods', canActivate: [ AuthGuardService ], component: OdsComponent},
   { path: 'afspraken', canActivate: [ AuthGuardService ], component: AfsprakenComponent},
-  { path: '', redirectTo: 'trajecten', pathMatch: 'full'},
-  { path: '**', redirectTo: 'trajecten', pathMatch: 'full'}
+  { path: 'login', component: LoginComponent },
+  { path: 'logout', component: LogoutComponent },
+  { path: '', redirectTo: 'login', pathMatch: 'full'},
+  { path: '**', redirectTo: 'login', pathMatch: 'full'}
 ]
 
 @NgModule({

@@ -58,7 +58,7 @@ router.get('/afspraken/', function(req, res, next) {
 
 router.post('/afspraken/', function (req, res, next) {
 
-  console.log(req);
+  //console.log(req);
 
     // var afspraak = new Afspraak(req.body);
     // afspraak.save(function(err, afspraak) {

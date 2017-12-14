@@ -9,8 +9,10 @@
     overflow-y: scroll !important;
 }
 
-.cardimage, .cardimage img {
-    height: 120px !important;
+.cardimage img {
+    height: 150px !important;
+    width: 100%;
+    object-fit: scale-down;
 }
 
 .odsscroll, .afsprakenscroll {
