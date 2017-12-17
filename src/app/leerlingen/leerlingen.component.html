@@ -9,7 +9,7 @@
 <div class="ui segment">
   <div class="ui eight cards">
 
-    <div class="ui green link card" routerLink="/leerling" *ngFor="let leerling of leerlingen">
+    <div class="ui green link card" routerLink="/leerling/{{leerling._id}}" *ngFor="let leerling of leerlingen">
       <div class="image">
         <img src="https://4usoftwaresolutions.com/wp-content/uploads/avatar-2.png">
       </div>
@@ -17,6 +17,5 @@
         <a class="header">{{leerling.voornaam}} {{leerling.achternaam}}</a>
       </div>
     </div>
-
   </div>
 </div>

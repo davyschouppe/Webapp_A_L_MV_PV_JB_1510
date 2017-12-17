@@ -48,7 +48,7 @@ const appRoutes: Routes = [
   { path: 'locatie/:trajectid/:locatieid', canActivate: [ AuthGuardService ], component: TrajectLocatiesDetailComponent},
   { path: 'traject/:id', canActivate: [ AuthGuardService ], component: TrajectComponent},
   { path: 'trajecten', canActivate: [ AuthGuardService ], component: TrajectenComponent},
-  { path: 'leerling', canActivate: [ AuthGuardService ], component: LeerlingenDetailComponent },
+  { path: 'leerling/:id', canActivate: [ AuthGuardService ], component: LeerlingenDetailComponent },
   { path: 'leerlingen', canActivate: [ AuthGuardService ], component: LeerlingenComponent },
   { path: 'ods', canActivate: [ AuthGuardService ], component: OdsComponent},
   { path: 'afspraken', canActivate: [ AuthGuardService ], component: AfsprakenComponent},

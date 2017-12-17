@@ -1,14 +1,14 @@
 <img class="ui centered small circular image" src="https://4usoftwaresolutions.com/wp-content/uploads/avatar-2.png">
-<br/> Voornaam: Daniel
+<br/> Voornaam: {{leerling?.voornaam}}
 <br/>
-<br/> Achternaam: Louise
+<br/> Achternaam: {{leerling?.achternaam}}
 <br/>
-<br/> Geboortedatum: 01/01/1996 (21j)
+<br/> Geboortedatum: {{leerling?.geboortedatum}}
 <br/>
-<br/> Woonplaats: Arbeidstraat 14 9300 Aalst
+<br/> Woonplaats: {{leerling?.straat}} {{leerling?.huisnummer}} {{leerling?.postcode}} {{leerling?.gemeente}}
 <br>
 <br/>
-<h5 class="ui header">Telefoonnummers:</h5>
-0499 32 22 55 - moeder
+<h5 class="ui header">Telefoonnummer:</h5>
+{{leerling?.telefoonnummer}}
 <br>
-<br/> 0499 35 54 44 - grootmoeder
+
