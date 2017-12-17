@@ -14,10 +14,8 @@ export class LeerlingenDetailComponent implements OnInit {
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
-    console.log(id);
     this._firebaseService.getLeerling(id).subscribe(leerling => {
       this.leerling = leerling;
-      console.log(leerling);
     });
   }
 }
