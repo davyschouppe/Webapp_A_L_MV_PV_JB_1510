@@ -12,13 +12,11 @@ export class FirebaseService {
   }
 
   getLeerlingen() {
-    console.log(this._leerlingen);
     return this._leerlingen;
   }
 
   getLeerling(id) {
     this._leerling = this.db.object('leerlingen/' + id).valueChanges();
-    console.log(this._leerling);
     return this._leerling;
   }
 }
