@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AngularFireModule } from 'angularfire2';
+import {AngularFireDatabaseModule} from 'angularfire2/database';
+
 
 import { AppComponent } from './app.component';
 import { NavigationbarComponent } from './navigationbar/navigationbar.component';
@@ -27,6 +30,19 @@ import { OdsDataService } from './ods-data.service';
 import { TrajectenDataService } from './trajecten-data.service';
 import { AuthenticationService } from './authentication.service';
 import { AuthGuardService } from './auth-guard.service';
+import {FirebaseService} from './firebase.service';
+
+export const environment = {
+  production: false,
+  firebase: {
+    apiKey: 'AIzaSyB7cDWrIxfDlQ8W-t_y-0X_mZwGA6TOp9U',
+    authDomain: 'fir-a-l-mv-pv-jb-1510.firebaseapp.com',
+    databaseURL: 'https://fir-a-l-mv-pv-jb-1510.firebaseio.com',
+    projectId: 'fir-a-l-mv-pv-jb-1510',
+    storageBucket: 'fir-a-l-mv-pv-jb-1510.appspot.com',
+    messagingSenderId: '526547676301'
+  }
+};
 
 const appRoutes: Routes = [
   { path: 'locatie/:trajectid/:locatieid', canActivate: [ AuthGuardService ], component: TrajectLocatiesDetailComponent},
@@ -66,6 +82,8 @@ const appRoutes: Routes = [
     BrowserModule,
     ReactiveFormsModule,
     HttpModule,
+    AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(environment.firebase),
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
@@ -73,7 +91,8 @@ const appRoutes: Routes = [
     OdsDataService,
     TrajectenDataService,
     AuthenticationService,
-    AuthGuardService
+    AuthGuardService,
+    FirebaseService
   ],
   bootstrap: [AppComponent]
 })
