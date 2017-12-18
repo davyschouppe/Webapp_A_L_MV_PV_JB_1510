@@ -36,7 +36,9 @@ export class TrajectAfsprakenComponent implements OnInit {
   }
 
   addRule(afspraak: Afspraak) {
-    this._trajectenDataService.addAfspraak(afspraak.toJSON(), this.traject.id).subscribe(item => this.traject.afspraken.push(item));
+    this._trajectenDataService.addAfspraak(afspraak.toJSON(), this.traject.id).subscribe(item => {
+      this.traject.afspraken.push(item);
+    });
     _.remove(this._afspraken, {id: afspraak.id});
   }
   removeRule() {

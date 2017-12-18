@@ -124,21 +124,21 @@ router.put('/trajecten/:traject', auth, function(req, res) {
     });
 });
 
-router.post('/trajecten/:traject/afspraken', auth, function (req, res, next) {
-    var afspraak = new Afspraak(req.body);
-    req.traject.afspraken.push(afspraak);
-    req.traject.save(function (err, traject) {
-        if (err) return next(err);
-        res.json(afspraak);
-    });
-});
-
 router.post('/trajecten/:traject/ontwikkelingsdoelen', auth, function (req, res, next) {
     var ontwikkelingsdoel = new Ontwikkelingsdoel(req.body);
     req.traject.ontwikkelingsdoelen.push(ontwikkelingsdoel);
     req.traject.save(function (err, traject) {
         if (err) return next(err);
         res.json(ontwikkelingsdoel);
+    });
+});
+
+router.post('/trajecten/:traject/afspraken', auth, function (req, res, next) {
+    var afspraak = new Afspraak(req.body);
+    req.traject.afspraken.push(afspraak);
+    req.traject.save(function (err, traject) {
+        if (err) return next(err);
+        res.json(req.body);
     });
 });
 
