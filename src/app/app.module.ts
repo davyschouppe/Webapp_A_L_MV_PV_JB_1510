@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from 'angularfire2';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
-
+import { AgmCoreModule } from '@agm/core';
 
 import { AppComponent } from './app.component';
 import { NavigationbarComponent } from './navigationbar/navigationbar.component';
@@ -84,7 +84,10 @@ const appRoutes: Routes = [
     HttpModule,
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebase),
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBRxmZMsWOR6sGe1sm2erF39cQgbFL6Q90'
+    })
   ],
   providers: [
     AfsprakenDataServiceService,
