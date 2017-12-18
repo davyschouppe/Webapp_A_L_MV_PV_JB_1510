@@ -1,11 +1,5 @@
-<div class="blurring dimmable image">
-  <div class="ui inverted dimmer">
-    <div class="content">
-      <div class="center">
-        <div class="ui massive black basic button">
-          <i class="spy icon"></i>Track</div>
-      </div>
-    </div>
-  </div>
-  <img class="ui fluid image" src="http://www.metaloterm.com/upload/image/map_google_europe.jpg">
-</div>
+<agm-map [latitude]="lat" [longitude]="lng">
+  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+</agm-map>
+
+{{leerling?.latitude}}

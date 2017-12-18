@@ -1,8 +1,8 @@
 <div class="ui grid horizontal segments">
   <div class="five wide column center aligned segment">
-      <app-leerlingen-detail-info></app-leerlingen-detail-info>
+      <app-leerlingen-detail-info [leerling]="leerling"></app-leerlingen-detail-info>
   </div>
   <div class="eleven wide column segment">
-      <app-leerlingen-detail-tracking class="kaart"></app-leerlingen-detail-tracking>
+      <app-leerlingen-detail-tracking class="kaart" [leerling]="leerling"></app-leerlingen-detail-tracking>
   </div>
 </div>

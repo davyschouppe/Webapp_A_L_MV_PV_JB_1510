@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 declare var $: any;
 
 @Component({
@@ -7,8 +7,12 @@ declare var $: any;
   styleUrls: ['./leerlingen-detail-tracking.component.css']
 })
 export class LeerlingenDetailTrackingComponent implements OnInit {
+  @Input() leerling;
+  lat= 51.678418;
+  lng= 7.809007;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
     $('.kaart .image')
